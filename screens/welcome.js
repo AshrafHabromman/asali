@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState, useContext} from 'react';
-import {View,Text, TouchableOpacity} from 'react-native';
+import {View,Text, TouchableOpacity,StyleSheet, TextInput} from 'react-native';
 import {Formik} from 'formik';
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -16,7 +16,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {CredentialsContext} from './../components/credentialsContext';
 
 //icons
-import {Octicons, Ionicons, Fontisto} from '@expo/vector-icons';
+import {Octicons, Ionicons, Fontisto, MaterialIcons} from '@expo/vector-icons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
+import AccountAndEditAccountNav from './../navigators/accountAndEditAccountNav';
+
+import SearchScreen from './searchScreen';
+import AccountScreen from './accountScreen';
 
 import {
     StyledContainer, 
@@ -40,7 +46,6 @@ import {
     TextLinkContent,
 
 } from './../components/styles'; 
-
 
 
 const {primary_1, darkPrimary, secondary, tertiary, brandTitle, brandColor} = Colors;
@@ -81,15 +86,41 @@ const Welcome = () => {
 function HomeScreen() {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Home!</Text>
+       <View style={styles.searchBox}>
+                <TextInput 
+                    placeholder='search'
+                    keyboardType='numeric'
+                    onChangeText={(value) => {console.log(value)}}
+                    onFocus={() => {console.log('hii')}}
+                ></TextInput>
+            </View>
       </View>
     );
   }
   
-  function SettingsScreen() {
+  function getInitialState() {
+    return {
+      region: {
+        latitude: 37.78825,
+        longitude: -122.4324,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+      },
+    };
+  };
+  
+  function onRegionChange(region) {
+    this.setState({ region });
+  }
+
+
+
+  function MoreScreen() {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Settings!</Text>
+        <StyledButton color={secondary} onPress={clearLogin}>
+            <ButtonText color={tertiary}>Logout</ButtonText>
+        </StyledButton>
       </View>
     );
   }
@@ -98,9 +129,61 @@ function HomeScreen() {
 
     return (
 
-        <Tab.Navigator>
-          <Tab.Screen name="Home" component={HomeScreen} />
-          <Tab.Screen name="Settings" component={SettingsScreen} />
+        <Tab.Navigator
+            initialRouteName="home"
+            activeColor={ tertiary}
+
+            barStyle={{
+                backgroundColor: secondary,
+                position: 'absolute',
+                right:16,
+                left:16,
+                bottom:12,
+                padding:5,
+                borderRadius:15,
+            }}
+            screenOptions={{
+                headerShown: false,
+            }}
+        >
+          <Tab.Screen 
+            name="home" component={HomeScreen} 
+            options={{
+                tabBarLabel: 'Home',
+                tabBarIcon: () => (
+                  <MaterialCommunityIcons name="home" color={tertiary} size={26} />
+                ),
+              }}
+            />
+          <Tab.Screen 
+          name="search" component={SearchScreen}
+          options={{
+            tabBarLabel: 'Search',
+            tabBarIcon: () => ( 
+              <Ionicons name="search-outline" color={tertiary} size={26} />
+            ),
+          }}
+          />
+
+          <Tab.Screen 
+          name="AccountAndEditAccountNav" component={AccountAndEditAccountNav} 
+          options={{
+            tabBarLabel: 'Account',
+            tabBarIcon: () => (
+              <MaterialCommunityIcons name="account" color={tertiary} size={26} />
+            ),
+          }}
+          />
+          
+          <Tab.Screen 
+          name="more" component={MoreScreen} 
+          options={{
+            tabBarLabel: 'More',
+            tabBarIcon: () => (
+              <MaterialIcons name="more-horiz" color={tertiary} size={26} />
+            ),
+          }}
+          />
         </Tab.Navigator>
     );
 }; 
@@ -118,3 +201,22 @@ export default Welcome;
     </StyledButton>
 </InnerContainer>
 </StyledContainer> */}
+
+const styles = StyleSheet.create({
+
+    searchBox: {
+        position: 'absolute',
+        marginTop: Platform.OS === 'ios' ? 40 : 20,
+        flexDirection: "row",
+        backgroundColor: '#fff',
+        width: '90%',
+        alignSelf: 'center',
+        borderRadius: 5,
+        padding: 10,
+        shadowColor: '#ccc',
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.5,
+        shadowRadius: 5,
+        elevation: 10,
+    },
+});

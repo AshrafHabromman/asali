@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 // login / signup navigator 
-import LoginSignupStack from './navigators/RootStack';
+import LoginSignupStack from './navigators/rootStack';
 
 //loading 
 import AppLoading from 'expo-app-loading';

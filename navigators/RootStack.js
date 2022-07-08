@@ -4,17 +4,17 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 //login page
-import Login from './../screens/login';
+import Login from '../screens/login';
 //sign up page
-import Signup from './../screens/signup';
+import Signup from '../screens/signup';
 //welcome
-import Welcome from './../screens/welcome';
+import Welcome from '../screens/welcome';
 
 //colors
-import {Colors} from './../components/styles'
+import {Colors} from '../components/styles'
 
 // Credentials context
-import {CredentialsContext} from './../components/credentialsContext';
+import {CredentialsContext} from '../components/credentialsContext';
 
 
 const Stack = createNativeStackNavigator();
@@ -33,23 +33,18 @@ const LoginSignupStack = () => {
                         headerTintColor: primary_1,
                         headerTransparent: true,
                         headerTitle:'',
-            
                         }}
                         initialRouteName='Login'
                     >
                     {storedCredentials ? 
-                        <Stack.Screen name='Welcome' component={Welcome} options={{headerTintColor:tertiary}}/>
+                        <Stack.Screen name='Welcome' component={Welcome} options={{headerShown:false}}/>
                         :
                         <>
                         <Stack.Screen name='Login' component={Login} />
                         <Stack.Screen name='Signup' component={Signup} options={{headerTintColor: tertiary}}/>
                         </>
-
                     }
-                        
-                        
                     </Stack.Navigator>
-            
                 </NavigationContainer>
             )}
         </CredentialsContext.Consumer>
