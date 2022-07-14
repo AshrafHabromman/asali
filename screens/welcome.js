@@ -136,11 +136,11 @@ function HomeScreen() {
             barStyle={{
                 backgroundColor: secondary,
                 position: 'absolute',
-                right:16,
-                left:16,
-                bottom:12,
-                padding:5,
-                borderRadius:15,
+                // right:16,
+                // left:16,
+                // bottom:12,
+                padding:3,
+                // borderRadius:15,
             }}
             screenOptions={{
                 headerShown: false,
