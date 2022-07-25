@@ -80,17 +80,17 @@ export default function AccountScreen({navigation}) {
             <View style={styles.infoBoxWrapper}>
 
                 <TouchableOpacity style={styles.infoBox}>
-                    <SimpleLineIcons name='user-following' size={22}/>
+                    <SimpleLineIcons name='user-following' size={22} color={secondary}/>
                     <Caption>Followers | 30</Caption>
                 </TouchableOpacity>
                 
                 <TouchableOpacity style={styles.infoBox}>
-                    <EvilIcons name='star' size={32}/>
+                    <EvilIcons name='star' size={32} color={secondary}/>
                     <Caption>Reviews | 5</Caption>
                 </TouchableOpacity>
                 
                 <TouchableOpacity style={styles.infoBox}>
-                    <MaterialCommunityIcons name='image-multiple-outline' size={24}/>
+                    <MaterialCommunityIcons name='image-multiple-outline' size={24} color={secondary}/>
                     <Caption>Photos | 20</Caption>
                 </TouchableOpacity>
             </View>

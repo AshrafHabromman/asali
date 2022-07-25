@@ -1,5 +1,5 @@
 import { Platform, StyleSheet, Text, View, ImageBackground, TextInput, ScrollView, TouchableOpacity } from 'react-native'
-import React, { useCallback, useMemo, useRef } from 'react'
+import React, { useCallback, useMemo, useRef, useState } from 'react'
 import {
   EvilIcons,
   FontAwesome,
@@ -16,43 +16,53 @@ import BottomSheet, {
   BottomSheetModalProvider
 } from '@gorhom/bottom-sheet';
 
-import ImagePicker from 'react-native-image-crop-picker';
+import * as ImagePicker from 'expo-image-picker';
 
 const { primary_1, darkPrimary, secondary, tertiary } = Colors;
 
 const EditAccountScreen = () => {
 
+  
+  const [image, setImage] = useState('C:\Users\Ashraf Habromman\asali\assets\logos\logo.png');
+
   const bottomSheetRef = useRef(null);
 
-  // variables
-  // const snapPoints = useMemo(() => ['25%', '50%'], []);
-
-  // callbacks
   const handleSheetChanges = useCallback((index) => {
-    console.log('handleSheetChanges', index);
+    console.log('handleSheetChanges', bottomSheetRef.current);
   }, []);
 
   const snapPoints = useMemo(() => ['25%', '55%'], []);
 
-  const takePhotoFromCamera = () => {
-    console.log('hi from camera')
-    ImagePicker.openCamera({
-      width: 300,
-      height: 400,
-      cropping: true,
-    }).then(image => {
-      console.log(image);
+  const takePhotoFromCamera = async () => {
+
+    let result = await ImagePicker.launchCameraAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
     });
+
+    console.log(result);
+
+    if (!result.cancelled) {
+      setImage(result.uri);
+    }
   };
 
-  const pickPhoto = () => {
-    ImagePicker.openPicker({
-      width: 300,
-      height: 400,
-      cropping: true
-    }).then(image => {
-      console.log(image);
+  const pickPhoto = async () => {
+    console.log('hi from library')
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
     });
+
+    console.log(result);
+
+    if (!result.cancelled) {
+      setImage(result.uri);
+    }
   };
 
   return (
@@ -71,10 +81,10 @@ const EditAccountScreen = () => {
               <Text style={styles.panelTitle}>Upload photo</Text>
               <Text style={styles.panelSubtitle}>Chose Your Profile photo</Text>
             </View>
-            <TouchableOpacity style={styles.panelButton} onPress={() => { takePhotoFromCamera }}>
+            <TouchableOpacity style={styles.panelButton} onPress={takePhotoFromCamera}>
               <Text style={styles.panelButtonTitle}>Take a photo</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.panelButton} onPress={() => { pickPhoto }}>
+            <TouchableOpacity style={styles.panelButton} onPress={pickPhoto}>
               <Text style={styles.panelButtonTitle}>Upload one</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.panelButton} onPress={() => { bottomSheetRef.current?.dismiss(); }}>
@@ -95,7 +105,7 @@ const EditAccountScreen = () => {
                 alignItems: 'center',
               }}>
                 <ImageBackground
-                  source={require('../assets/logos/logo.png')}
+                  source={{uri: image,}}
                   style={{ height: 100, width: 100 }}
                   imageStyle={{ borderRadius: 15 }}
                 >

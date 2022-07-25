@@ -28,8 +28,6 @@ const AccountAndEditAccountNav = () => {
                     headerTintColor: tertiary,
                     headerTransparent: true,
                     headerTitle: '',
-                    
-
                 }}
                 initialRouteName='AccountScreen'
             >
@@ -39,9 +37,6 @@ const AccountAndEditAccountNav = () => {
 
     );
 }
-
-
-
 
 
 export default AccountAndEditAccountNav;

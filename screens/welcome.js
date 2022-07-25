@@ -23,6 +23,8 @@ import AccountAndEditAccountNav from './../navigators/accountAndEditAccountNav';
 
 import SearchScreen from './searchScreen';
 import AccountScreen from './accountScreen';
+import HomeScreen from './homeScreen';
+import HomeScreenNav from '../navigators/homeScreenNav';
 
 import {
     StyledContainer, 
@@ -83,20 +85,20 @@ const Welcome = () => {
     }
 
     
-function HomeScreen() {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-       <View style={styles.searchBox}>
-                <TextInput 
-                    placeholder='search'
-                    keyboardType='numeric'
-                    onChangeText={(value) => {console.log(value)}}
-                    onFocus={() => {console.log('hii')}}
-                ></TextInput>
-            </View>
-      </View>
-    );
-  }
+// function HomeScreen() {
+//     return (
+//       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+//        <View style={styles.searchBox}>
+//                 <TextInput 
+//                     placeholder='search'
+                    
+//                     onChangeText={(value) => {console.log(value)}}
+//                     onFocus={() => {console.log('hii')}}
+//                 ></TextInput>
+//             </View>
+//       </View>
+//     );
+  // }
   
   function getInitialState() {
     return {
@@ -147,7 +149,7 @@ function HomeScreen() {
             }}
         >
           <Tab.Screen 
-            name="home" component={HomeScreen} 
+            name="HomeScreenNav" component={HomeScreenNav}
             options={{
                 tabBarLabel: 'Home',
                 tabBarIcon: () => (

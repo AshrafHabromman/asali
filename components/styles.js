@@ -14,7 +14,7 @@ const StatusBarHeight = Constants.statusBarHeight;
 export const Colors = {
     primary_1: '#F3EAE3',     // الفاتح 
     darkPrimary: '#ECDCCD',
-    secondary: '#F37C19',   // عسلي
+    secondary: '#F37C19',   // عسلي 
     tertiary: '#34252F',    // بني
     brandTitle: '#F37C19',  // 
     brandColor: '#34252F',
