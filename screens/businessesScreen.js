@@ -121,7 +121,7 @@ export default function BusinessesScreen({ route, navigation }) {
             <ScrollView style={styles.businessesWrapper}>
                 {
                     businesses.business.map((business, index) => (
-                        <TouchableOpacity onPress={()=> {navigation.navigate('BusinessScreen', {businessID: business.key})}}>
+                        <TouchableOpacity onPress={()=> {navigation.navigate('BusinessScreen', {businessID: business.key, businessName: business.businessName} )}}>
                             <BusinessCard
                                 businessName={business.businessName}
                                 businessDescription={business.description}

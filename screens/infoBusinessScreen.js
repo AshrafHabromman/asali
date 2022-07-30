@@ -124,7 +124,7 @@ export default function InfoScreen() {
                     style={styles.servicesWrapper}
                 >
                     {
-                        services.map((service) => (
+                        services.map((service, index) => (
                             <View style={styles.service}>
                                 <Text>{service}</Text>
                             </View>

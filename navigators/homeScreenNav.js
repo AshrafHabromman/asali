@@ -48,7 +48,9 @@ const Stack = createNativeStackNavigator();
 import HomeScreen from '../screens/homeScreen';
 import BusinessesScreen from '../screens/businessesScreen';
 import BusinessScreen from '../screens/businessScreen';
-import BusinessScreenNav from './businessScreenNav';
+import GalleryScreen from '../screens/galleryScreen';
+import FullScreenImagesScreen from '../screens/fullScreenImagesScreen';
+import WriteReviewScreen from '../screens/writeReviewScreen';
 export default function HomeScreenNav({ navigation }) {
 
     return (
@@ -68,6 +70,9 @@ export default function HomeScreenNav({ navigation }) {
                 <Stack.Screen name='HomeScreen' component={HomeScreen} />
                 <Stack.Screen name='BusinessesScreen' component={BusinessesScreen} />
                 <Stack.Screen name='BusinessScreen' component={BusinessScreen} />
+                <Stack.Screen name='GalleryScreen' component={GalleryScreen} />
+                <Stack.Screen name='FullScreenImagesScreen' component={FullScreenImagesScreen} />
+                <Stack.Screen name='WriteReviewScreen' component={WriteReviewScreen}  options={({ route }) => ({ headerTitle: route.params.businessName })}/>
             </Stack.Navigator>
         </SafeAreaView>
     );

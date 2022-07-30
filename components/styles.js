@@ -134,7 +134,7 @@ export const MsgBox = styled.Text`
 export const Line = styled.View`
     height: 1px;
     width: 100%;
-    background-color: ${darkPrimary};
+    background-color: #000;
     margin-vertical: 10px;
 `;
 
