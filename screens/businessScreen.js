@@ -34,6 +34,7 @@ import InfoScreen from './infoBusinessScreen';
 import ReviewCard from '../components/reviewCard';
 import ReviewsScreen from './reviewsScreen';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { reviews, images } from '../data';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -103,193 +104,7 @@ export default function BusinessScreen({ route, navigation }) {
 
     const businessName = route.params.businessName;
     const businessID = route.params.businessName;
-
-
-
-    const businessImages = [
-        {
-            id:11,
-            imageSource:require('../assets/food/food1.jpg'),
-        },
-        {
-            id:22,
-            imageSource:require('../assets/food/food2.jpg')
-        },
-        {
-            id:33,
-            imageSource:require('../assets/food/food3.jpg'),
-        },
-        {
-            id:12,
-            imageSource:require('../assets/food/food4.jpg'),
-        },
-        {
-            id:23,
-            imageSource:require('../assets/food/food5.jpg')
-        },
-        {
-            id:11,
-            imageSource:require('../assets/food/food1.jpg'),
-        },
-        {
-            id:22,
-            imageSource:require('../assets/food/food2.jpg')
-        },
-        {
-            id:33,
-            imageSource:require('../assets/food/food3.jpg'),
-        },
-        {
-            id:12,
-            imageSource:require('../assets/food/food4.jpg'),
-        },
-        {
-            id:23,
-            imageSource:require('../assets/food/food5.jpg')
-        },
-        {
-            id:11,
-            imageSource:require('../assets/food/food1.jpg'),
-        },
-        {
-            id:22,
-            imageSource:require('../assets/food/food2.jpg')
-        },
-        {
-            id:33,
-            imageSource:require('../assets/food/food3.jpg'),
-        },
-        {
-            id:12,
-            imageSource:require('../assets/food/food4.jpg'),
-        },
-        {
-            id:23,
-            imageSource:require('../assets/food/food5.jpg')
-        },
-        {
-            id:11,
-            imageSource:require('../assets/food/food1.jpg'),
-        },
-        {
-            id:22,
-            imageSource:require('../assets/food/food2.jpg')
-        },
-        {
-            id:33,
-            imageSource:require('../assets/food/food3.jpg'),
-        },
-        {
-            id:12,
-            imageSource:require('../assets/food/food4.jpg'),
-        },
-        {
-            id:23,
-            imageSource:require('../assets/food/food5.jpg')
-        },
-        {
-            id:11,
-            imageSource:require('../assets/food/food1.jpg'),
-        },
-        {
-            id:22,
-            imageSource:require('../assets/food/food2.jpg')
-        },
-        {
-            id:33,
-            imageSource:require('../assets/food/food3.jpg'),
-        },
-        {
-            id:12,
-            imageSource:require('../assets/food/food4.jpg'),
-        },
-        {
-            id:23,
-            imageSource:require('../assets/food/food5.jpg')
-        },
-        
-    ]
-
-    const reviews = [
-        {
-            id:1,
-            businessName: 'Amazing food place',
-            userName : 'Ashraf Habromman',
-            reviewText: "If you decide to eat here, just be aware it is going to take about 2 hours from beginning to end. We have tried it multiple times, because I want to like it! I have been to it's other locations in NJ and never had a bad experience. The food is good, but it takes a very long time to come out. The waitstaff is very young, but usually pleasant. We have just had too many experiences where we spent way too long waiting. We usually opt for another diner or restaurant on the weekends, in order to be done quicker.",
-            images :[
-                {
-                    id:11,
-                    imageSource:require('../assets/homeImages/clothes.jpg'),
-                },
-                {
-                    id:22,
-                    imageSource:require('../assets/homeImages/supermarket.jpg')
-                },
-                {
-                    id:33,
-                    imageSource:require('../assets/homeImages/resturant.jpg'),
-                },
-                
-            ]
-        },
-        {   
-            id:2,
-            businessName: 'Amazing food place',
-            userName : 'Ashraf Habromman',
-            reviewText: "If you decide to eat here, just be aware it is going to take about 2 hours from beginning to end. We have tried it multiple times, because I want to like it! If you decide to eat here, just be aware it is going to take about 2 hours from beginning to end. We have tried it multiple times, because I want to like it! I have been to it's other locations in NJ and never had a bad experience. The food is good, but it takes a very long time to come out. The waitstaff is very young, but usually pleasant. We have just had too many experiences where we spent way too long waiting. We usually opt for another diner or restaurant on the weekends, in order to be done quicker.",
-            images :[
-                {
-                    id:11,
-                    imageSource:require('../assets/homeImages/clothes.jpg'),
-                },
-                {
-                    id:22,
-                    imageSource:require('../assets/homeImages/supermarket.jpg')
-                },
-                {
-                    id:33,
-                    imageSource:require('../assets/homeImages/resturant.jpg'),
-                },
-                
-            ]
-        },
-        {
-            id:3,
-            businessName: 'Amazing food place',
-            userName : 'Ashraf Habromman',
-            reviewText: "If you decide to eat here, just be aware it is going to take about 2 hours from beginning to end. We have tried it multiple times, because I want to like it! I have been to it's other locations in NJ and never had a bad experience. The food is good, but it takes a very long time to come out. The waitstaff is very young, but usually pleasant. We have just had too many experiences where we spent way too long waiting. We usually opt for another diner or restaurant on the weekends, in order to be done quicker. If you decide to eat here, just be aware it is going to take about 2 hours from beginning to end. We have tried it multiple times, because I want to like it! I have been to it's other locations in NJ and never had a bad experience. The food is good, but it takes a very long time to come out. The waitstaff is very young, but usually pleasant. We have just had too many experiences where we spent way too long waiting. We usually opt for another diner or restaurant on the weekends, in order to be done quicker.",
-            images :[
-                {
-                    id:11,
-                    imageSource:require('../assets/homeImages/clothes.jpg'),
-                },
-                {
-                    id:22,
-                    imageSource:require('../assets/homeImages/supermarket.jpg')
-                },
-                {
-                    id:33,
-                    imageSource:require('../assets/homeImages/resturant.jpg'),
-                },
-                {
-                    id:12,
-                    imageSource:require('../assets/homeImages/clothes.jpg'),
-                },
-                {
-                    id:23,
-                    imageSource:require('../assets/homeImages/supermarket.jpg')
-                },
-                {
-                    id:34,
-                    imageSource:require('../assets/homeImages/resturant.jpg'),
-                },
-                
-            ]
-        }
-
-    ]
-
-
+   
     return (
         <BottomSheetModalProvider>
 
@@ -392,7 +207,7 @@ export default function BusinessScreen({ route, navigation }) {
                         <Text style={{ fontSize: 13 }} >Location</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.icon} onPress={() => {navigation.navigate('GalleryScreen', {images: businessImages}) }}>
+                    <TouchableOpacity style={styles.icon} onPress={() => {navigation.navigate('GalleryScreen', {images: images}) }}>
                         <Ionicons name='images-outline' size={20} />
                         <Text style={{ fontSize: 13 }}>Photos</Text>
                     </TouchableOpacity>

@@ -48,7 +48,7 @@ function ReviewsScreen({route, navigation}) {
     const {reviews} = route.params
 
     return (
-        <View style={{flex:1}}>
+        <View style={styles.container}>
             <FlatList 
                 // style={{ flex: 1}}
                 nestedScrollEnabled={true}
@@ -64,7 +64,9 @@ function ReviewsScreen({route, navigation}) {
 
 const styles = StyleSheet.create({
     container: {
-        // flex: 1,
+        flex: 1,
+        
+        marginBottom:60,
     },
     wrapper: {
         // display: 'flex',

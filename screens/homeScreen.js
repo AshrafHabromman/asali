@@ -18,6 +18,8 @@ import StarRating from "../components/starRarting";
 //colors
 import { Colors } from '../components/styles'
 
+import { businesses } from "../data";
+
 const { primary_1, darkPrimary, secondary, tertiary } = Colors
 
 const { width, height } = Dimensions.get("window");
@@ -108,18 +110,18 @@ const HomeScreen = ({ navigation }) => {
                 ></TextInput>
             </View>
                 <View style={styles.categoryContainer}>
-                    <TouchableOpacity style={styles.categoryBtn} onPress={() => { navigation.navigate('BusinessesScreen', { category: 'Resturants' }) }}>
+                    <TouchableOpacity style={styles.categoryBtn} onPress={() => { navigation.navigate('BusinessesScreen', { headerTitle: 'Resturants', businesses: businesses}) }}>
                         <View style={styles.categoryIcon}>
                             <Ionicons name='ios-restaurant' size={35} color={secondary} />
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.categoryBtn} onPress={() => { navigation.navigate('BusinessesScreen', { category: 'Markets' }) }}>
+                    <TouchableOpacity style={styles.categoryBtn} onPress={() => { navigation.navigate('BusinessesScreen', { headerTitle: 'Markets', businesses: businesses }) }}>
                         <View style={styles.categoryIcon}>
                             <MaterialIcons name='local-grocery-store' size={35} color={secondary} />
                         </View>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.categoryBtn} onPress={() => { navigation.navigate('BusinessesScreen', { category: 'Drinks' }) }}>
+                    <TouchableOpacity style={styles.categoryBtn} onPress={() => { navigation.navigate('BusinessesScreen', { headerTitle: 'Drinks', businesses: businesses }) }}>
                         <View style={styles.categoryIcon}>
                             <MaterialCommunityIcons name='food-fork-drink' size={35} color={secondary} />
                         </View>
@@ -127,18 +129,18 @@ const HomeScreen = ({ navigation }) => {
                 </View>
 
                 <View style={styles.categoryContainer}>
-                    <TouchableOpacity style={styles.categoryBtn} onPress={() => { navigation.navigate('BusinessesScreen', { category: 'Delivery' }) }}>
+                    <TouchableOpacity style={styles.categoryBtn} onPress={() => { navigation.navigate('BusinessesScreen', { headerTitle: 'Delivery', businesses: businesses }) }}>
                         <View style={styles.categoryIcon}>
                             <MaterialIcons name='delivery-dining' size={35} color={secondary} />
                         </View>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.categoryBtn} onPress={() => { navigation.navigate('BusinessesScreen', { category: 'Hotels' }) }}>
+                    <TouchableOpacity style={styles.categoryBtn} onPress={() => { navigation.navigate('BusinessesScreen', { headerTitle: 'Hotels', businesses: businesses }) }}>
                         <View style={styles.categoryIcon}>
                             <MaterialIcons name='hotel' size={35} color={secondary} />
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.categoryBtn} onPress={() => { navigation.navigate('BusinessesScreen', { category: 'More' }) }}>
+                    <TouchableOpacity style={styles.categoryBtn} onPress={() => { navigation.navigate('BusinessesScreen', { headerTitle: 'More', businesses: businesses }) }}>
                         <View style={styles.categoryIcon}>
                             <MaterialIcons name='more-horiz' size={35} color={secondary} />
                         </View>

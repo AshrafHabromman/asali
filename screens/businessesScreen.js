@@ -45,77 +45,16 @@ const { primary_1, darkPrimary, secondary, tertiary, brandTitle, brandColor } = 
 
 export default function BusinessesScreen({ route, navigation }) {
 
-    const { category, } = route.params;
+    const { headerTitle, businesses } = route.params;
 
-    const businesses_json = {
-        business: [
-            {
-                key: 1,
-                businessName: 'Amazing food place',
-                rating: 3,
-                reviews: 12,
-                description: 'Bla bla bla bla bla bal bal lla la bla ',
-                image: 'C:\Users\Ashraf Habromman\asali\assets\homeImages\resturant.jpg',
-            },
-            {
-                key: 2,
-                businessName: 'Second Amazing food place',
-                rating: 4,
-                reviews: 14,
-                description: 'Bla bla bla bla bla bal bal lla la bla ',
-                image: 'C:\Users\Ashraf Habromman\asali\assets\homeImages\resturant.jpg',
-            },
-            {
-                key: 3,
-                businessName: 'Third Amazing food place',
-                rating: 5,
-                reviews: 16,
-                description: 'Bla bla bla bla bla bal bal lla la bla ',
-                image: 'C:\Users\Ashraf Habromman\asali\assets\homeImages\resturant.jpg',
-            },
-            {
-                key: 4,
-                businessName: '4 Amazing food place',
-                rating: 5,
-                reviews: 16,
-                description: 'Bla bla bla bla bla bal bal lla la bla ',
-                image: 'C:\Users\Ashraf Habromman\asali\assets\homeImages\resturant.jpg',
-            },
-            {
-                key: 5,
-                businessName: '4 Amazing food place',
-                rating: 5,
-                reviews: 16,
-                description: 'Bla bla bla bla bla bal bal lla la bla ',
-                image: 'C:\Users\Ashraf Habromman\asali\assets\homeImages\resturant.jpg',
-            },
-            {
-                key: 6,
-                businessName: '4 Amazing food place',
-                rating: 5,
-                reviews: 16,
-                description: 'Bla bla bla bla bla bal bal lla la bla ',
-                image: 'C:\Users\Ashraf Habromman\asali\assets\homeImages\resturant.jpg',
-            },
-            {
-                key: 7,
-                businessName: '4 Amazing food place',
-                rating: 5,
-                reviews: 16,
-                description: 'Bla bla bla bla bla bal bal lla la bla ',
-                image: 'C:\Users\Ashraf Habromman\asali\assets\homeImages\resturant.jpg',
-            }
-        ]
-    }
-
-    const [businesses, setBusinesses] = useState(businesses_json);
+    // const [businesses, setBusinesses] = useState(businesses_json);
 
 
 
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.businessTitleWrapper}>
-                <Text style={styles.businessTitle}>{category}</Text>
+                <Text style={styles.businessTitle}>{headerTitle}</Text>
             </View>
 
             <ScrollView style={styles.businessesWrapper}>

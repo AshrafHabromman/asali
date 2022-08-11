@@ -39,11 +39,16 @@ import {
 
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Avatar, Title, Caption, TouchableRipple } from 'react-native-paper';
+
+import { reviews, images, businesses } from '../data';
+
 const { primary_1, darkPrimary, secondary, tertiary, brandTitle, brandColor } = Colors;
 
 export default function AccountScreen({navigation}) {
     const [userName, setUserName] = useState('Ashraf habromman');
     const [bio, setBio] = useState('Food lover');
+
+    const name = 'Ashraf'
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.userInfoSection}>
@@ -84,22 +89,22 @@ export default function AccountScreen({navigation}) {
                     <Caption>Followers | 30</Caption>
                 </TouchableOpacity>
                 
-                <TouchableOpacity style={styles.infoBox}>
+                <TouchableOpacity style={styles.infoBox} onPress={() => {navigation.navigate('ReviewsScreen', {reviews:reviews})}}>
                     <EvilIcons name='star' size={32} color={secondary}/>
                     <Caption>Reviews | 5</Caption>
                 </TouchableOpacity>
                 
-                <TouchableOpacity style={styles.infoBox}>
+                <TouchableOpacity style={styles.infoBox}  onPress={() => {navigation.navigate('GalleryScreen', {images:images})}}>
                     <MaterialCommunityIcons name='image-multiple-outline' size={24} color={secondary}/>
                     <Caption>Photos | 20</Caption>
                 </TouchableOpacity>
             </View>
 
             <View style={styles.menuWrapper}>
-                <TouchableRipple onPress={()=>{console.log('hi')}}>
+                <TouchableRipple onPress={()=>{navigation.navigate('BusinessesScreen', {headerTitle: name+'\'s Followings', businesses: businesses})}}>
                     <View style={styles.menuItem}>
                         <Ionicons name='heart-outline' color={secondary} size={24}/>
-                        <Text style={styles.menuItemText}>Your favoraties</Text>
+                        <Text style={styles.menuItemText}>Your Followings</Text>
                     </View>
                 </TouchableRipple>
                 <TouchableRipple onPress={()=>{console.log('hi')}}>
