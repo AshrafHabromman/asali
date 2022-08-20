@@ -53,8 +53,7 @@ import FullScreenImagesScreen from '../screens/fullScreenImagesScreen';
 import WriteReviewScreen from '../screens/writeReviewScreen';
 import SearchBusinessScreen from '../screens/searchBusinessScreen';
 import SearchResultsScreen from '../screens/searchResultsScreen';
-import AccountScreen from '../screens/accountScreen';
-export default function HomeScreenNav({ navigation }) {
+export default function SearchNav({ navigation }) {
 
     return (
         <SafeAreaView style={styles.container}>
@@ -67,17 +66,12 @@ export default function HomeScreenNav({ navigation }) {
                     headerTintColor: tertiary,
                     headerTransparent: true,
                     headerTitle: '',
-                    // headerShown: false
+                    headerShown: false
                 }}
             >
-                <Stack.Screen name='HomeScreen' component={HomeScreen} />
-                <Stack.Screen name='BusinessesScreen' component={BusinessesScreen} />
-                <Stack.Screen name='BusinessScreen' component={BusinessScreen} />
-                <Stack.Screen name='GalleryScreen' component={GalleryScreen} />
-                <Stack.Screen name='FullScreenImagesScreen' component={FullScreenImagesScreen} />
-                <Stack.Screen name='WriteReviewScreen' component={WriteReviewScreen}  options={({ route }) => ({ headerTitle: route.params.businessName })}/>
+                <Stack.Screen name='SearchBusinessScreen' component={SearchBusinessScreen} />
                 <Stack.Screen name='SearchResultsScreen' component={SearchResultsScreen} />
-                <Stack.Screen name='ForeignAccountScreen' component={AccountScreen} />
+
             </Stack.Navigator>
         </SafeAreaView>
     );

@@ -26,21 +26,22 @@ const { primary_1, darkPrimary, secondary, tertiary, brandTitle, brandColor } = 
 
 const ReviewCard = ({ item, navigation }) => {
 
-    // const businessName = item.businessName;  
-    // const userName = props.userName;  
-    // const reviewText = props.reviewText;
-    // const rating = props.rating;
-    // const reviews = props.reviews;
-    // const images = props.images;
-    // const coolCount = props.coolCount;
-    // const funnyCount = props.funnyCount;
-    // const usefulCount = props.usefulCount;
-
+    const businessName = item.businessName;  
+    const userName = item.userName;  
+    const reviewText = item.reviewText;
+    const rating = item.rating;
+    const date = item.date
+    
     const images = item.images;
+    const coolCount = item.coolCount;
+    const funnyCount = item.funnyCount;
+    const usefulCount = item.usefulCount;
+
+    
     // const navigation = useNavigation();
     const PostImage = ({ item, images }) => {
         return(
-            <TouchableOpacity onPress={() => { console.log('hello'); navigation.navigate('FullScreenImagesScreen', {images:images})}}>
+            <TouchableOpacity onPress={() => { console.log('hello'); navigation.navigate('FullScreenImagesScreen', {images:images}) }}>
                 <Image 
                     style={styles.image} 
                     source={item.imageSource}
@@ -51,7 +52,7 @@ const ReviewCard = ({ item, navigation }) => {
     }
 
 
-    const ReactionButton = ({color, title}) => {
+    const ReactionButton = ({color, title, numberReactions}) => {
 
         const [clicked, setClicked] = useState(false);
         return(
@@ -60,7 +61,7 @@ const ReviewCard = ({ item, navigation }) => {
                 onPress={ () => {setClicked(!clicked); console.log('hi')}}
             >
                 <Fontisto name='sunglasses' size={20} color={ (clicked) ? 'white' : color}/>
-                <Text style={{color: (clicked) ? 'white' : color, marginLeft:3}}>{ title }</Text>
+                <Text style={{color: (clicked) ? 'white' : color, marginLeft:3}}>{ title } | {numberReactions}</Text>
             </TouchableOpacity>
         )
         
@@ -76,18 +77,18 @@ const ReviewCard = ({ item, navigation }) => {
                     size={45}
                 />
                 <Text style={{width:'85%', alignSelf:'center',}}>
-                    <Text style={styles.userName}>{item.userName}</Text>
+                    <Text style={styles.userName} onPress={() => {navigation.navigate('ForeignAccountScreen', /*TODO*/ )}}>{userName}</Text>
                     <Text style={{fontWeight:'300'}}> has reviewed </Text>
-                    <Text style={styles.businessName}>{item.businessName}</Text>
+                    <Text style={styles.businessName} onPress={() => {navigation.navigate('BusinessScreen', /*TODO*/ {businessName: 'SoSo Time ! '} )}} >{businessName}</Text>
                 </Text>
             </View>
             <View style={{ flexDirection:'row',}}>
-                <StarRating rating={5}/>
-                <Text>. 12-05-2022</Text>
+                <StarRating rating={rating}/>
+                <Text>. {date}</Text>
             </View>
             <View style={styles.reviewText}>
                 <Text>
-                    {item.reviewText}
+                    {reviewText}
                 </Text>
             </View>
 
@@ -105,9 +106,9 @@ const ReviewCard = ({ item, navigation }) => {
             <Line />
 
             <View style={styles.reactionWrapper}>
-                <ReactionButton title='Useful' color={secondary} />
-                <ReactionButton title='Cool' color={secondary} />
-                <ReactionButton title='Funny' color={secondary} />
+                <ReactionButton title='Useful' numberReactions={usefulCount} color={secondary} />
+                <ReactionButton title='Cool' numberReactions={coolCount} color={secondary} />
+                <ReactionButton title='Funny' numberReactions={funnyCount} color={secondary} />
             </View>
 
 

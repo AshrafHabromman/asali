@@ -38,7 +38,6 @@ export default function InfoScreen() {
     let webRef = undefined;
 
     let businessPosition = {longitude: '-121.913', latitude:'37.361'};
-
     let [mapCenter, setMapCenter] = useState(businessPosition.longitude+','+businessPosition.longitude);
 
     
@@ -99,7 +98,6 @@ export default function InfoScreen() {
                             style={{
                                 // flex: 1,
                                 data: { fill: ({ datum }) => secondary },
-
                             }}
                             cornerRadius={{ top: 5, }}
                             data={[
@@ -125,7 +123,7 @@ export default function InfoScreen() {
                 >
                     {
                         services.map((service, index) => (
-                            <View style={styles.service}>
+                            <View style={styles.service} key={index}>
                                 <Text>{service}</Text>
                             </View>
                         ))
@@ -157,6 +155,7 @@ export default function InfoScreen() {
 const styles = StyleSheet.create({
     info: {
         flex: 1,
+        marginBottom:60,
     },
     bio: {
         marginVertical: 15,
@@ -216,6 +215,7 @@ const styles = StyleSheet.create({
         // flex:1,
         width: '95%',
         height: '20%',
+        marginBottom:10,
         // alignItems: 'center',
         // justifyContent: 'center',
         alignSelf: 'center',

@@ -27,9 +27,6 @@ const FullScreenImagesScreen = ({ route, navigation }) => {
     const { images, } = route.params;
 
     console.log(images)
-    const [newwidth, setWidth] = useState(0);
-    const [newheight, setHeight] = useState(0);
-  
 
     return (
         <View style={styles.container}>
@@ -76,7 +73,7 @@ const FullScreenImagesScreen = ({ route, navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#484e4b',
+        backgroundColor: tertiary,
         justifyContent: 'center',
         alignItems: 'center',
         alignContent: 'center',

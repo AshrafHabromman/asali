@@ -26,13 +26,13 @@ import StarRating from './starRarting';
 const { primary_1, darkPrimary, secondary, tertiary, brandTitle, brandColor } = Colors;
 
 
-export default function BusinessCard(props) {
+export default function BusinessCard({business}) {
 
-    const businessName = props.businessName;  
-    const businessDescription = props.businessDescription;
-    const rating = props.rating;
-    const reviews = props.reviews;
-    const businessImage = props.businessImage
+    const businessName = business.businessName;  
+    const businessDescription = business.description;
+    const rating = business.rating;
+    const numreviews = business.numReviews;
+    const businessImage = business.image;
 
     return (
         <View style={styles.card}>
@@ -45,7 +45,7 @@ export default function BusinessCard(props) {
             </View>
             <View style={styles.cardInfo}>
                 <Text style={styles.cardTitle}>{businessName}</Text>
-                <StarRating rating={rating} reviews={reviews} />
+                <StarRating rating={rating} reviews={numreviews} />
                 <Text style={styles.cardDetalils}>{businessDescription}</Text>
             </View>
         </View>

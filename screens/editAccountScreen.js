@@ -17,12 +17,17 @@ import BottomSheet, {
 } from '@gorhom/bottom-sheet';
 
 import * as ImagePicker from 'expo-image-picker';
-
+import { Formik } from 'formik';
 const { primary_1, darkPrimary, secondary, tertiary } = Colors;
 
 const EditAccountScreen = () => {
 
-  
+  const [firstFormMessage, setFirstFormMessage] = useState('')
+  const [firstFormMessageType, setFirstFormMessageType] = useState('')
+
+  const [secondFormMessage, setSecondFormMessage] = useState('')
+  const [secondFormMessageType, setSecondFormMessageType] = useState('')
+
   const [image, setImage] = useState('C:\Users\Ashraf Habromman\asali\assets\logos\logo.png');
 
   const bottomSheetRef = useRef(null);
@@ -101,16 +106,18 @@ const EditAccountScreen = () => {
                 height: 100,
                 width: 100,
                 borderRadius: 15,
+                borderColor: '#aaa',
+                borderWidth: 1,
                 justifyContent: 'center',
                 alignItems: 'center',
               }}>
                 <ImageBackground
-                  source={{uri: image,}}
+                  source={{ uri: image, }}
                   style={{ height: 100, width: 100 }}
-                  imageStyle={{ borderRadius: 15 }}
+                  imageStyle={{ borderRadius: 15, }}
                 >
-                  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', opacity: 0.8 }}>
-                    <EvilIcons name='camera' size={38} color="#fff" ></EvilIcons>
+                  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', opacity: 1 }}>
+                    <EvilIcons name='camera' size={38} color="#aaa" ></EvilIcons>
                   </View>
                 </ImageBackground>
               </View>
@@ -122,34 +129,102 @@ const EditAccountScreen = () => {
 
           <Line />
 
-          <View style={styles.action}>
-            <FontAwesome name='user-o' color={secondary} size={20} />
-            <TextInput
-              placeholder='Name'
-              placeholderTextColor={'#666666'}
-              style={[styles.textInput, { color: tertiary }]}
-            ></TextInput>
-          </View>
+          <Formik
+            initialValues={{}}
+            onSubmit={(values) => {
+              console.log(values)
+              setFirstFormMessage('يا سلاااام')
+              setFirstFormMessageType('SUCCESS')  // SUCCESS or  FAILED
+              /*TODO*/
+            }}
+          >
+            {({ handleChange, handleBlur, handleSubmit, values }) => (
+              <View>
+                <View style={styles.action}>
+                  <FontAwesome name='user-o' color={secondary} size={20} />
+                  <TextInput
+                    placeholder='First Name'
+                    placeholderTextColor={'#666666'}
+                    style={[styles.textInput, { color: tertiary }]}
+                    onChangeText={handleChange('firstName')}
+                    onBlur={handleBlur('firstName')}
+                    value={values.firstName}
+                  ></TextInput>
+                </View>
 
-          <View style={styles.action}>
-            <FontAwesome name='envelope-o' color={secondary} size={20} />
-            <TextInput
-              placeholder='email'
-              keyboardType='email-address'
-              placeholderTextColor={'#666666'}
-              style={[styles.textInput, { color: tertiary }]}
-            ></TextInput>
-          </View>
+                <View style={styles.action}>
+                  <FontAwesome name='user-o' color={secondary} size={20} />
+                  <TextInput
+                    placeholder='Last Name'
+                    placeholderTextColor={'#666666'}
+                    style={[styles.textInput, { color: tertiary }]}
+                    onChangeText={handleChange('lastName')}
+                    onBlur={handleBlur('lastName')}
+                    value={values.lastName}
+                  ></TextInput>
+                </View>
 
-          <View style={styles.action}>
-            <MaterialCommunityIcons name='map-marker-radius' size={20} color={secondary} />
-            <TextInput
-              placeholder='location'
-              placeholderTextColor={'#666666'}
-              style={[styles.textInput, { color: tertiary }]}
-            ></TextInput>
-          </View>
-          {/* 
+                <View style={styles.action}>
+                  <FontAwesome name='user-o' color={secondary} size={20} />
+                  <TextInput
+                    placeholder='Username'
+                    placeholderTextColor={'#666666'}
+                    style={[styles.textInput, { color: tertiary }]}
+                    onChangeText={handleChange('username')}
+                    onBlur={handleBlur('username')}
+                    value={values.username}
+                  ></TextInput>
+                </View>
+
+                <View style={styles.action}>
+                  <FontAwesome name='envelope-o' color={secondary} size={20} />
+                  <TextInput
+                    placeholder='email'
+                    keyboardType='email-address'
+                    placeholderTextColor={'#666666'}
+                    style={[styles.textInput, { color: tertiary }]}
+                    onChangeText={handleChange('email')}
+                    onBlur={handleBlur('email')}
+                    value={values.email}
+
+                  ></TextInput>
+                </View>
+
+
+
+                <View style={styles.action}>
+                  <FontAwesome name='header' size={20} color={secondary} />
+                  <TextInput
+                    placeholder='Headline'
+                    placeholderTextColor={'#666666'}
+                    style={[styles.textInput, { color: tertiary }]}
+                    onChangeText={handleChange('headline')}
+                    onBlur={handleBlur('headline')}
+                    value={values.headline}
+                  ></TextInput>
+                </View>
+
+                <View style={styles.action}>
+                  {/* <View style={{justifyContent: 'center', alignItems: 'center', }}>
+                    <FontAwesome name='header' size={20} color={secondary} />
+                  </View> */}
+                  <TextInput
+                    multiline={true}
+                    textAlignVertical='top'
+                    placeholder='Bio'
+                    placeholderTextColor={'#666666'}
+                    style={[styles.textInput, { color: tertiary, height: 80, }]}
+                    onChangeText={handleChange('bio')}
+                    onBlur={handleBlur('bio')}
+                    value={values.bio}
+                  ></TextInput>
+                </View>
+                <MsgBox type={firstFormMessageType}>{firstFormMessage}</MsgBox>
+
+                <TouchableOpacity style={styles.commandButton} onPress={handleSubmit}>
+                  <Text style={styles.panelButtonTitle}> Save information</Text>
+                </TouchableOpacity>
+                {/* 
         <View style={styles.action}>
           <FontAwesome name='user-o' color={secondary} size={20} />
           <TextInput
@@ -158,44 +233,81 @@ const EditAccountScreen = () => {
             style={[styles.textInput, { color: 'blue'}]}
           ></TextInput>
         </View> */}
+              </View>
+            )}
 
+
+          </Formik>
           <Line />
 
           <Text style={{ marginTop: 10, fontSize: 15, fontWeight: 'bold' }}>
             Edit Password
           </Text>
 
-          <View style={styles.action}>
-            <FontAwesome name='lock' color={secondary} size={20} />
-            <TextInput
-              placeholder='Old password'
-              placeholderTextColor={'#666666'}
-              style={[styles.textInput, { color: tertiary }]}
-            ></TextInput>
-          </View>
+          <Formik
+            initialValues={{}}
+            onSubmit={(values) => {
+              if (values.confirmedPassword != values.newPassword) {
+                setSecondFormMessage('Passwords does not match')
+                setSecondFormMessageType('FAILED') // SUCCESS or  FAILED
+              }
 
-          <View style={styles.action}>
-            <FontAwesome name='lock' color={secondary} size={20} />
-            <TextInput
-              placeholder='New password'
-              placeholderTextColor={'#666666'}
-              style={[styles.textInput, { color: tertiary }]}
-            ></TextInput>
-          </View>
-          <View style={styles.action}>
-            <FontAwesome name='lock' color={secondary} size={20} />
-            <TextInput
-              placeholder='Confirm new password'
-              placeholderTextColor={'#666666'}
-              style={[styles.textInput, { color: tertiary }]}
-            ></TextInput>
-          </View>
+              /*TODO*/
+              console.log(values)
+            }}
+          >
+            {
+              ({ handleChange, handleBlur, handleSubmit, values }) => (
+                <View>
+                  <View style={styles.action}>
+                    <FontAwesome name='lock' color={secondary} size={20} />
+                    <TextInput
+                      placeholder='Old password'
+                      placeholderTextColor={'#666666'}
+                      style={[styles.textInput, { color: tertiary }]}
+                      onChangeText={handleChange('oldPassword')}
+                      onBlur={handleBlur('oldPassword')}
+                      value={values.oldPassword}
+                      secureTextEntry={true}
+                    ></TextInput>
+                  </View>
 
-          <MsgBox>soso</MsgBox>
+                  <View style={styles.action}>
+                    <FontAwesome name='lock' color={secondary} size={20} />
+                    <TextInput
+                      placeholder='New password'
+                      placeholderTextColor={'#666666'}
+                      style={[styles.textInput, { color: tertiary }]}
+                      onChangeText={handleChange('newPassword')}
+                      onBlur={handleBlur('newPassword')}
+                      value={values.newPassword}
+                      secureTextEntry={true}
+                    ></TextInput>
+                  </View>
+                  <View style={styles.action}>
+                    <FontAwesome name='lock' color={secondary} size={20} />
+                    <TextInput
+                      placeholder='Confirm new password'
+                      placeholderTextColor={'#666666'}
+                      style={[styles.textInput, { color: tertiary }]}
+                      onChangeText={handleChange('confirmedPassword')}
+                      onBlur={handleBlur('confirmedPassword')}
+                      value={values.confirmedPassword}
+                      secureTextEntry={true}
+                    ></TextInput>
+                  </View>
 
-          <TouchableOpacity style={styles.commandButton} onPress={() => { console.log('hi') }}>
-            <Text style={styles.panelButtonTitle}> Submit </Text>
-          </TouchableOpacity>
+                  <MsgBox type={secondFormMessageType}>{secondFormMessage}</MsgBox>
+
+                  <View style={{ marginBottom: 55 }}>
+                    <TouchableOpacity style={styles.commandButton} onPress={handleSubmit}>
+                      <Text style={styles.panelButtonTitle}> Save new password </Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              )
+            }
+          </Formik>
 
         </View>
 
@@ -210,12 +322,14 @@ const styles = StyleSheet.create({
   },
 
   commandButton: {
-    padding: 15,
+    height: 45,
+    // padding: 15,
     borderRadius: 10,
     backgroundColor: secondary,
     alignItems: 'center',
+    justifyContent: 'center',
     marginTop: 10,
-    marginBottom: 60,
+    // marginBottom: 60,
   },
   panel: {
     flex: 1,

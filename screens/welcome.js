@@ -21,11 +21,13 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 import AccountAndEditAccountNav from './../navigators/accountAndEditAccountNav';
 
-import SearchScreen from './searchScreen';
+import SearchResultsScreen from './searchResultsScreen';
 import AccountScreen from './accountScreen';
 import HomeScreen from './homeScreen';
+import SearchBusinessScreen from './searchBusinessScreen';
 import HomeScreenNav from '../navigators/homeScreenNav';
-
+import SearchNav from '../navigators/searchNav';
+import MoreNav from '../navigators/moreNav';
 import {
     StyledContainer, 
     InnerContainer, 
@@ -48,6 +50,7 @@ import {
     TextLinkContent,
 
 } from './../components/styles'; 
+
 
 
 const {primary_1, darkPrimary, secondary, tertiary, brandTitle, brandColor} = Colors;
@@ -117,11 +120,14 @@ const Welcome = () => {
 
 
 
-  function MoreScreen() {
+  function MoreScreen({navigation}) {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <StyledButton color={secondary} onPress={clearLogin}>
-            <ButtonText color={tertiary}>Logout</ButtonText>
+      <View style={{ flex: 1, margin:20 }}>
+        <StyledButton color={secondary} onPress={()=>navigation.navigate('EditAccountScreen')}/*onPress={clearLogin} */>
+            <ButtonText color={tertiary} >Settings</ButtonText>
+        </StyledButton>
+        <StyledButton color={secondary} onPress={clearLogin} >
+            <ButtonText color={tertiary} >Log out</ButtonText>
         </StyledButton>
       </View>
     );
@@ -158,7 +164,7 @@ const Welcome = () => {
               }}
             />
           <Tab.Screen 
-          name="search" component={SearchScreen}
+          name="SearchNav" component={SearchNav}
           options={{
             tabBarLabel: 'Search',
             tabBarIcon: () => ( 
@@ -178,7 +184,7 @@ const Welcome = () => {
           />
           
           <Tab.Screen 
-          name="more" component={MoreScreen} 
+          name="more" component={MoreNav} 
           options={{
             tabBarLabel: 'More',
             tabBarIcon: () => (

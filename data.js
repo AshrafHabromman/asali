@@ -102,11 +102,16 @@ export const images = [
     
 ]
 
-export const reviews = [
+export const reviewsTry = [
     {
         id:1,
         businessName: 'Amazing food place',
         userName : 'Ashraf Habromman',
+        rating: 3, 
+        date: '5-3-2021',
+        usefulCount: 2,
+        coolCount: 10,
+        funnyCount: 5,
         reviewText: "If you decide to eat here, just be aware it is going to take about 2 hours from beginning to end. We have tried it multiple times, because I want to like it! I have been to it's other locations in NJ and never had a bad experience. The food is good, but it takes a very long time to come out. The waitstaff is very young, but usually pleasant. We have just had too many experiences where we spent way too long waiting. We usually opt for another diner or restaurant on the weekends, in order to be done quicker.",
         images :[
             {
@@ -121,14 +126,19 @@ export const reviews = [
                 id:33,
                 imageSource:require('./assets/homeImages/resturant.jpg'),
             },
-            
-        ]
+        ],
+
     },
     {   
         id:2,
         businessName: 'Amazing food place',
         userName : 'Ashraf Habromman',
         reviewText: "If you decide to eat here, just be aware it is going to take about 2 hours from beginning to end. We have tried it multiple times, because I want to like it! If you decide to eat here, just be aware it is going to take about 2 hours from beginning to end. We have tried it multiple times, because I want to like it! I have been to it's other locations in NJ and never had a bad experience. The food is good, but it takes a very long time to come out. The waitstaff is very young, but usually pleasant. We have just had too many experiences where we spent way too long waiting. We usually opt for another diner or restaurant on the weekends, in order to be done quicker.",
+        rating: 4, 
+        date: '3-3-2020',
+        usefulCount: 5,
+        coolCount: 4,
+        funnyCount: 4,
         images :[
             {
                 id:11,
@@ -150,6 +160,11 @@ export const reviews = [
         businessName: 'Amazing food place',
         userName : 'Ashraf Habromman',
         reviewText: "If you decide to eat here, just be aware it is going to take about 2 hours from beginning to end. We have tried it multiple times, because I want to like it! I have been to it's other locations in NJ and never had a bad experience. The food is good, but it takes a very long time to come out. The waitstaff is very young, but usually pleasant. We have just had too many experiences where we spent way too long waiting. We usually opt for another diner or restaurant on the weekends, in order to be done quicker. If you decide to eat here, just be aware it is going to take about 2 hours from beginning to end. We have tried it multiple times, because I want to like it! I have been to it's other locations in NJ and never had a bad experience. The food is good, but it takes a very long time to come out. The waitstaff is very young, but usually pleasant. We have just had too many experiences where we spent way too long waiting. We usually opt for another diner or restaurant on the weekends, in order to be done quicker.",
+        rating: 5, 
+        date: '3-30-2020',
+        usefulCount: 4,
+        coolCount: 1,
+        funnyCount: 7,
         images :[
             {
                 id:11,
@@ -181,15 +196,14 @@ export const reviews = [
 
 ]
 
-export const businesses = {
-    business: [
+export const businessesTry = [
         {
             key: 1,
             businessName: 'Amazing food place',
             rating: 3,
             reviews: 12,
             description: 'Bla bla bla bla bla bal bal lla la bla ',
-            image: 'C:\Users\Ashraf Habromman\asali\assets\homeImages\resturant.jpg',
+            image:require('./assets/homeImages/resturant.jpg'),
         },
         {
             key: 2,
@@ -197,7 +211,7 @@ export const businesses = {
             rating: 4,
             reviews: 14,
             description: 'Bla bla bla bla bla bal bal lla la bla ',
-            image: 'C:\Users\Ashraf Habromman\asali\assets\homeImages\resturant.jpg',
+            image: require('./assets/homeImages/resturant.jpg'),
         },
         {
             key: 3,
@@ -205,7 +219,7 @@ export const businesses = {
             rating: 5,
             reviews: 16,
             description: 'Bla bla bla bla bla bal bal lla la bla ',
-            image: 'C:\Users\Ashraf Habromman\asali\assets\homeImages\resturant.jpg',
+            image:require('./assets/homeImages/resturant.jpg'),
         },
         {
             key: 4,
@@ -213,7 +227,7 @@ export const businesses = {
             rating: 5,
             reviews: 16,
             description: 'Bla bla bla bla bla bal bal lla la bla ',
-            image: 'C:\Users\Ashraf Habromman\asali\assets\homeImages\resturant.jpg',
+            image: require('./assets/homeImages/resturant.jpg'),
         },
         {
             key: 5,
@@ -221,7 +235,7 @@ export const businesses = {
             rating: 5,
             reviews: 16,
             description: 'Bla bla bla bla bla bal bal lla la bla ',
-            image: 'C:\Users\Ashraf Habromman\asali\assets\homeImages\resturant.jpg',
+            image: require('./assets/homeImages/supermarket.jpg'),
         },
         {
             key: 6,
@@ -229,7 +243,7 @@ export const businesses = {
             rating: 5,
             reviews: 16,
             description: 'Bla bla bla bla bla bal bal lla la bla ',
-            image: 'C:\Users\Ashraf Habromman\asali\assets\homeImages\resturant.jpg',
+            image: require('./assets/homeImages/resturant.jpg'),
         },
         {
             key: 7,
@@ -237,7 +251,6 @@ export const businesses = {
             rating: 5,
             reviews: 16,
             description: 'Bla bla bla bla bla bal bal lla la bla ',
-            image: 'C:\Users\Ashraf Habromman\asali\assets\homeImages\resturant.jpg',
+            image: require('./assets/homeImages/supermarket.jpg'),
         }
     ]
-}

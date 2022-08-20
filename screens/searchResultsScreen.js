@@ -11,17 +11,21 @@ import {
   Image,
   Dimensions
 } from 'react-native';
-
+import {
+  FontAwesome,
+  MaterialCommunityIcons,
+  Ionicons,
+  Fontisto
+}
+  from 'react-native-vector-icons';
 import StarRating from '../components/starRarting';
 import { WebView } from 'react-native-webview';
 import mapTemplate from './maps/webmap';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import Fontisto from 'react-native-vector-icons/Fontisto';
+
 import { Animated } from 'react-native';
 import {
   Colors,
-} from './../components/styles';
+} from '../components/styles';
 
 const { primary_1, darkPrimary, secondary, tertiary, brandTitle, brandColor } = Colors;
 
@@ -31,7 +35,7 @@ const CARD_HEIGHT = 220;
 const CARD_WIDTH = width * 0.8;
 const SPACING_FOR_CARD_INSET = width * 0.1 - 10;
 
-export default function SearchScreen() {
+export default function SearchResultsScreen({navigation}) {
 
 
   const Images = [
@@ -191,16 +195,17 @@ export default function SearchScreen() {
       >
 
       </WebView>
-      <View style={styles.searchBox}>
+      <TouchableOpacity style={styles.searchBox} onPress={() => {navigation.navigate('SearchBusinessScreen')}}>
         <TextInput
           placeholder='search'
-
-          onChangeText={(value) => { console.log(value) }}
-          onFocus={() => { console.log('hii') }}
-          onPressIn={() => { console.log('hii') }}
+          editable={false}
+          style={{ flex: 10, }}
+          // onChangeText={(value) => { console.log(value) }}
+          // onPressIn={() => {  }}
         ></TextInput>
-      </View>
-
+        <FontAwesome name='sliders' size={27} style={{ flex: 1, alignSelf: 'center', }} />
+      </TouchableOpacity>
+{/* 
       <ScrollView
         horizontal
         scrollEventThrottle={1}
@@ -223,7 +228,7 @@ export default function SearchScreen() {
             <Text>{category.name}</Text>
           </TouchableOpacity>
         ))}
-      </ScrollView>
+      </ScrollView> */}
 
       <Animated.ScrollView
         style={styles.cardContainer}
@@ -267,7 +272,7 @@ export default function SearchScreen() {
               <StarRating rating={marker.rating} reviews={marker.reviews} />
               <Text numberOfLines={1} style={styles.cardDescription}>{marker.description}</Text>
               <View style={styles.button}>
-                <TouchableOpacity style={[styles.reviewButton, { borderWidth: 1, borderColor: secondary }]} onPress={() => { console.log('say hi') }}>
+                <TouchableOpacity style={[styles.reviewButton, { borderWidth: 1, borderColor: secondary }]} onPress={() => { navigation.navigate('BusinessScreen', {businessName:'soso time'}) }}>
                   <Text style={styles.reviewButtonText}> Review now</Text>
                 </TouchableOpacity>
               </View>

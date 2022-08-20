@@ -123,7 +123,7 @@ const Signup = ({navigation}) => {
         <StyledContainer>
             <StatusBar style='dark'/>
             <InnerContainer>
-                <PageLogo resizeMode='cover' source={require('../assets/logos/logo.png')} />
+                {/* <PageLogo resizeMode='cover' source={require('../assets/logos/logo.png')} /> */}
                 <SubTitle>Account Sign up</SubTitle>
                 
                 <Formik
@@ -154,12 +154,30 @@ const Signup = ({navigation}) => {
                         (                    
                         <StyledFormArea>
                             <MyTextInput 
-                            label="Full Name"
+                            label="First Name"
                             icon="person"
-                            placeholder="Ashraf Habromman"
-                            onChangeText={handleChange('fullName')}
-                            onBlur={handleBlur('fullName')}
-                            value={values.fullName}
+                            placeholder="Ashraf "
+                            onChangeText={handleChange('firstName')}
+                            onBlur={handleBlur('firstName')}
+                            value={values.firstName}
+                            />
+
+                            <MyTextInput 
+                            label="Last Name"
+                            icon="person"
+                            placeholder="Habromman"
+                            onChangeText={handleChange('lastName')}
+                            onBlur={handleBlur('lastName')}
+                            value={values.lastName}
+                            />
+
+                            <MyTextInput 
+                            label="Username"
+                            icon="person"
+                            placeholder="ashrafHab"
+                            onChangeText={handleChange('username')}
+                            onBlur={handleBlur('username')}
+                            value={values.username}
                             />
 
                             <MyTextInput 
@@ -171,7 +189,7 @@ const Signup = ({navigation}) => {
                             value={values.email}
                             keyboardType="email-address"
                             />
-                            <TouchableOpacity onPress={showMode}>
+                            {/* <TouchableOpacity onPress={showMode}>
                                 <MyTextInput 
                                 value={date ? date.toDateString():''}
                                 label="Birthdate"
@@ -182,7 +200,7 @@ const Signup = ({navigation}) => {
                                 
                                 editable={false}
                                 />
-                            </TouchableOpacity>
+                            </TouchableOpacity> */}
                             
 
                             <MyTextInput 

@@ -41,11 +41,11 @@ const { primary_1, darkPrimary, secondary, tertiary, brandTitle, brandColor } = 
 
 const { width, height } = Dimensions.get("window");
 
+function ReviewsScreen({route, navigation, reviewsProp}) {
 
+    // console.log(reviewsProp)
 
-function ReviewsScreen({route, navigation}) {
-
-    const {reviews} = route.params
+    const reviews = reviewsProp != null ? reviewsProp:  route.params.reviews
 
     return (
         <View style={styles.container}>
@@ -65,7 +65,6 @@ function ReviewsScreen({route, navigation}) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        
         marginBottom:60,
     },
     wrapper: {

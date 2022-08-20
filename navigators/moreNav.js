@@ -40,21 +40,15 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import MoreScreen from '../screens/moreScreen';
+import EditAccountScreen from '../screens/editAccountScreen';
 
 const { primary_1, darkPrimary, secondary, tertiary, brandTitle, brandColor } = Colors;
 
 const Stack = createNativeStackNavigator();
 
-import HomeScreen from '../screens/homeScreen';
-import BusinessesScreen from '../screens/businessesScreen';
-import BusinessScreen from '../screens/businessScreen';
-import GalleryScreen from '../screens/galleryScreen';
-import FullScreenImagesScreen from '../screens/fullScreenImagesScreen';
-import WriteReviewScreen from '../screens/writeReviewScreen';
-import SearchBusinessScreen from '../screens/searchBusinessScreen';
-import SearchResultsScreen from '../screens/searchResultsScreen';
-import AccountScreen from '../screens/accountScreen';
-export default function HomeScreenNav({ navigation }) {
+
+export default function MoreNav({ navigation }) {
 
     return (
         <SafeAreaView style={styles.container}>
@@ -70,14 +64,9 @@ export default function HomeScreenNav({ navigation }) {
                     // headerShown: false
                 }}
             >
-                <Stack.Screen name='HomeScreen' component={HomeScreen} />
-                <Stack.Screen name='BusinessesScreen' component={BusinessesScreen} />
-                <Stack.Screen name='BusinessScreen' component={BusinessScreen} />
-                <Stack.Screen name='GalleryScreen' component={GalleryScreen} />
-                <Stack.Screen name='FullScreenImagesScreen' component={FullScreenImagesScreen} />
-                <Stack.Screen name='WriteReviewScreen' component={WriteReviewScreen}  options={({ route }) => ({ headerTitle: route.params.businessName })}/>
-                <Stack.Screen name='SearchResultsScreen' component={SearchResultsScreen} />
-                <Stack.Screen name='ForeignAccountScreen' component={AccountScreen} />
+                <Stack.Screen name='MoreScreen' component={MoreScreen} />
+                <Stack.Screen name='EditAccountScreen' component={EditAccountScreen}/> 
+
             </Stack.Navigator>
         </SafeAreaView>
     );

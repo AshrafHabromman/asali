@@ -43,12 +43,23 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 const { primary_1, darkPrimary, secondary, tertiary, brandTitle, brandColor } = Colors;
 
+import { reviewsTry } from '../data';
 export default function BusinessesScreen({ route, navigation }) {
 
-    const { headerTitle, businesses } = route.params;
+    const { headerTitle, businessesTry } = route.params;
 
-    // const [businesses, setBusinesses] = useState(businesses_json);
-
+    // TODO 
+    // you have headerTitle you can use it to put in the API 
+    // return values should be array of businesses and each element in array looks like: 
+    // {
+    //     key: 1,
+    //     businessName: 'Amazing food place',
+    //     rating: 3,
+    //     numReviews: 12,
+    //     description: 'Bla bla bla bla bla bal bal lla la bla ',
+    //     image: '',
+    // }
+    const [businesses, setBusinesses] = useState(/* array of businesses */ );
 
 
     return (
@@ -59,14 +70,10 @@ export default function BusinessesScreen({ route, navigation }) {
 
             <ScrollView style={styles.businessesWrapper}>
                 {
-                    businesses.business.map((business, index) => (
-                        <TouchableOpacity onPress={()=> {navigation.navigate('BusinessScreen', {businessID: business.key, businessName: business.businessName} )}}>
+                    businessesTry.map((business, index) => (
+                        <TouchableOpacity onPress={()=> {navigation.navigate('BusinessScreen', {businessID: business.key, businessName: business.businessName, reviewsTry:reviewsTry} )}}>
                             <BusinessCard
-                                businessName={business.businessName}
-                                businessDescription={business.description}
-                                rating={business.rating}
-                                reviews={business.reviews}
-                                businessImage={business.image}
+                                business={business}
                             />
                         </TouchableOpacity>
                     ))

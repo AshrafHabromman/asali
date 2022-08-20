@@ -17,6 +17,8 @@ import {
     from 'react-native-vector-icons';
 
 import * as ImagePicker from 'expo-image-picker';
+import DropDownPicker from 'react-native-dropdown-picker';
+
 const { primary_1, darkPrimary, secondary, tertiary, brandTitle, brandColor } = Colors;
 
 const { height, width } = Dimensions.get('window')
@@ -24,22 +26,34 @@ const { height, width } = Dimensions.get('window')
 const WriteReviewScreen = ({ route, navigation }) => {
 
     // const {businessName} = route.params.businessName
+    const [services, setServices] = useState([
+        { label: 'Vitrified Glass', value: 'Vitrified Glass' },
+        { label: 'Melamine', value: 'Melamine' },
+        { label: 'Polycarbonate', value: 'Polycarbonate' },
+        { label: 'Earthenware', value: 'Earthenware' },
+        { label: 'Stoneware', value: 'Stoneware' },
+        { label: 'Wooden', value: 'Wooden' },
+        { label: 'Paper', value: 'Paper' }
+    ])
+    const [serviceValue, setServiceValue] = useState(null);
+    const [dropDownOpen, setDropDownOpen] = useState(false);
+
     const businessImages = [
         {
-            id:11,
-            imageSource:require('../assets/food/food1.jpg'),
+            id: 11,
+            imageSource: require('../assets/food/food1.jpg'),
         },
         {
-            id:22,
-            imageSource:require('../assets/food/food2.jpg')
+            id: 22,
+            imageSource: require('../assets/food/food2.jpg')
         },
         {
-            id:33,
-            imageSource:require('../assets/food/food3.jpg'),
+            id: 33,
+            imageSource: require('../assets/food/food3.jpg'),
         },
         {
-            id:12,
-            imageSource:require('../assets/food/food4.jpg'),
+            id: 12,
+            imageSource: require('../assets/food/food4.jpg'),
         },
 
     ]
@@ -48,11 +62,11 @@ const WriteReviewScreen = ({ route, navigation }) => {
     const [images, setImages] = useState([]);
 
     const PostImage = ({ item, }) => {
-        return(
+        return (
             <TouchableOpacity onPress={() => { console.log('hello'); }}>
-                <Image 
-                    style={styles.image} 
-                    source={{uri:item}}
+                <Image
+                    style={styles.image}
+                    source={{ uri: item }}
                     resizeMode='cover'
                 />
             </TouchableOpacity>
@@ -66,23 +80,23 @@ const WriteReviewScreen = ({ route, navigation }) => {
     const takePhotoFromCamera = async () => {
 
         let result = await ImagePicker.launchCameraAsync({
-          mediaTypes: ImagePicker.MediaTypeOptions.All,
-          // allowsEditing: true,
-          // aspect: [4, 3],
-          quality: 1,
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            // allowsEditing: true,
+            // aspect: [4, 3],
+            quality: 1,
         });
 
-        if(result.uri != undefined){
+        if (result.uri != undefined) {
             setImages([...images, result.uri])
             console.log(images)
         }
 
 
-        
+
     }
 
     return (
-        <View style={[styles.container, {marginBottom: 70,}]}>
+        <View style={styles.container}>
             <Line />
             <View style={{ alignSelf: 'flex-start' }}>
                 <Rating
@@ -99,36 +113,71 @@ const WriteReviewScreen = ({ route, navigation }) => {
                 />
             </View>
 
-            <TextInput
-                style={styles.reviewText}
-                multiline
-                numberOfLines={25}
-            />
+            <View style={{ flex: 1, flexDirection: 'column' }}>
+                <DropDownPicker
+                    // multiple={true} 
+                    open={dropDownOpen}
+                    value={serviceValue}
+                    items={services}
+                    setOpen={setDropDownOpen}
+                    setValue={setServiceValue}
+                    setItems={setServices}
+                    translation={{
+                        PLACEHOLDER: "Select Service"
+                    }}
+                    
+                    stickyHeader={true}
+                    textStyle={{
+                        fontSize: 15,
+                    }}
+                    labelStyle={{
+                        // color: secondary
+                    }}
+                    style={{
+                        // backgroundColor: secondary
+                        borderColor: secondary,
+                        borderWidth: 2,
+                        opacity: 1,
+                        paddingHorizontal: 18,
+                        marginVertical:10
 
-            <View style={styles.imagesWrapper}>
-                <FlatList 
-                    // style={{flex:1, alignContent:'center',}}
-                    // nestedScrollEnabled={true}
-                    horizontal={true}
-                    data={images}
-                    renderItem={PostImage}
-                    // keyExtractor={item => item.id}
+                    }}
+                    onChangeValue={(value) => {
+                        console.log(value);
+                    }}
                 />
-            </View>
+                <TextInput
+                    style={styles.reviewText}
+                    multiline
+                    numberOfLines={25}
+                    onResponderStart={() => console.log('start')}
+                    onResponderTerminationRequest={() => console.log('end')}
+                />
 
+                <View style={styles.imagesWrapper}>
+                    <FlatList
+                        // style={{flex:1, alignContent:'center',}}
+                        // nestedScrollEnabled={true}
+                        horizontal={true}
+                        data={images}
+                        renderItem={PostImage}
+                    // keyExtractor={item => item.id}
+                    />
+                </View>
 
-            <View style={{flex:1, flexDirection: 'row',}}>
+                <View style={{ flex: 1, flexDirection: 'row', justifyContent:'center', alignSelf: 'center' }}>
 
-                <TouchableOpacity style={styles.submitButton}>
-                    <Text style={{color:secondary, fontWeight: '700'}}>Submit</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.mediaButton} onPress={takePhotoFromCamera}>
-                    <EvilIcons name='camera' size={40} />
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.mediaButton}>
-                    <EvilIcons name='image' size={40} />
-                </TouchableOpacity>
+                    <TouchableOpacity style={styles.submitButton}>
+                        <Text style={{ color: secondary, fontWeight: '700' }}>Submit</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.mediaButton} onPress={takePhotoFromCamera}>
+                        <EvilIcons name='camera' size={40} />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.mediaButton}>
+                        <EvilIcons name='image' size={40} />
+                    </TouchableOpacity>
 
+                </View>
             </View>
 
         </View>
@@ -141,23 +190,24 @@ const styles = StyleSheet.create({
         flex: 1,
         marginTop: 40,
         marginHorizontal: 15,
-        
+        marginBottom:70,
+        // height: '80%',
         // alignItems: "center",
         // justifyContent:'center'
         // backgroundColor: 'red'
     },
     reviewText: {
-        flex:10,
-        alignContent: 'flex-start',
-        justifyContent: 'flex-start',
-        marginTop: 15,
-        padding: 8,
+        flex: 8,
+        // alignContent: 'flex-start',
+        // justifyContent: 'flex-start',
+        // marginTop: 15,
+        padding: 15,
         textAlignVertical: 'top',
-        // shadowColor: '#ccc',
-        // shadowOffset: { width: 1, height: 1 },
-        // shadowOpacity: 0.1,
-        // shadowRadius: 1,
-        // elevation: 1,
+        shadowColor: '#ccc',
+        shadowOffset: { width: 1, height: 1 },
+        shadowOpacity: 0.1,
+        shadowRadius: 1,
+        elevation: 1,
         // backgroundColor: 'red'
     },
     submitButton: {
@@ -172,30 +222,30 @@ const styles = StyleSheet.create({
     },
     mediaButton: {
         flex: 2,
-        justifyContent: 'center',
+        // justifyContent: 'center',
         alignItems: 'center',
         alignSelf: 'center',
         opacity: 0.65
     },
-    imagesWrapper:{
-        flex:3,
+    imagesWrapper: {
+        flex: 3,
         flexDirection: 'row',
         alignSelf: 'center',
-        alignItems:'center',
+        alignItems: 'center',
         justifyContent: 'center',
         // marginHorizontal:8,
-        marginVertical: 10,
+        // marginVertical: 10,
         // position: 'relative',
         // bottom: 40,
         // backgroundColor: 'red'
     },
-    image:{
+    image: {
         marginHorizontal: 8,
-        marginTop:8,
+        marginTop: 8,
         // width:90, 
         height: '80%',
-        aspectRatio:1/1,
-        borderRadius:8,
+        aspectRatio: 1 / 1,
+        borderRadius: 8,
         // alignSelf:'center'
     },
 })

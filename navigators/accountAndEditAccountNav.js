@@ -35,7 +35,6 @@ const AccountAndEditAccountNav = () => {
                 initialRouteName='AccountScreen'
             >
                 <Stack.Screen name='AccountScreen' component={AccountScreen} />
-                <Stack.Screen name='EditAccountScreen' component={EditAccountScreen}/> 
                 <Stack.Screen name='GalleryScreen' component={GalleryScreen} /> 
                 <Stack.Screen name='ReviewsScreen' component={ReviewsScreen} />        
                 <Stack.Screen name='BusinessesScreen' component={BusinessesScreen} />  

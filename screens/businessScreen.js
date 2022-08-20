@@ -1,7 +1,9 @@
 import React from 'react';
 import { useState, useRef, useMemo } from 'react';
-import { StyleSheet, View, ScrollView, Image, Text, TouchableOpacity, Linking, Dimensions, FlatList } from 'react-native';
-
+import { StyleSheet, View, ScrollView, Image, Text, TouchableOpacity, Linking, Dimensions, FlatLis, Modal } from 'react-native';
+import { Rating, } from 'react-native-ratings';
+import DropDownPicker from 'react-native-dropdown-picker';
+import Checkbox from 'expo-checkbox';
 
 import {
     Colors,
@@ -34,7 +36,7 @@ import InfoScreen from './infoBusinessScreen';
 import ReviewCard from '../components/reviewCard';
 import ReviewsScreen from './reviewsScreen';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { reviews, images } from '../data';
+import { reviewsTry, images } from '../data';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -87,6 +89,29 @@ const days = [
 
 export default function BusinessScreen({ route, navigation }) {
 
+    const [filterVisible, setFilterVisible] = useState(false);
+    const [numOfStars, setNumOfStars] = useState(4)
+    const [isSelectedPositive, setSelectionPositive] = useState(false);
+    const [isSelectedNegative, setSelectionNegative] = useState(false);
+    const [isSelectedNeutral, setSelectionNeutral] = useState(false);
+
+    
+    const [services, setServices] = useState([
+        { label: 'Vitrified Glass', value: 'Vitrified Glass' },
+        { label: 'Melamine', value: 'Melamine' },
+        { label: 'Polycarbonate', value: 'Polycarbonate' },
+        { label: 'Earthenware', value: 'Earthenware' },
+        { label: 'Stoneware', value: 'Stoneware' },
+        { label: 'Wooden', value: 'Wooden' },
+        { label: 'Paper', value: 'Paper' }
+    ])
+
+    const [serviceValue, setServiceValue] = useState(null);
+    const [dropDownOpen, setDropDownOpen] = useState(false);
+    const [trendy, setTrendy] = useState(false)
+    const [recentOrOldest, setRecentOrOldest] = useState('recent');
+
+
     const bottomSheetRef = useRef(null);
     const snapPoints = useMemo(() => ['25%', '57%'], []);
 
@@ -104,7 +129,133 @@ export default function BusinessScreen({ route, navigation }) {
 
     const businessName = route.params.businessName;
     const businessID = route.params.businessName;
-   
+
+    const BusinessReviewsScreen = (props) => (
+        <View style={{ flex: 1, flexDirection: 'column' }}>
+            <Modal
+                presentationStyle='overFullScreen'
+                visible={filterVisible}
+                transparent={true}
+                animationType='fade'
+            >
+                <View style={styles.centeredView} >
+                    <View style={styles.modalView} >
+                        <View style={{ position: 'relative', left: '92%', width: '10%' }}>
+                            <EvilIcons name='close-o' size={30} onPress={() => { setFilterVisible(false) }} />
+                        </View>
+
+                        <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', }}>
+
+                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', }}>
+                                <Text style={{ fontSize: 16, fontWeight: 'bold', }}>Filter Reviews</Text>
+                            </View>
+                            <View style={{ flex: 1.3, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
+                                {/* <Text style={{fontSize: 16}}>Stars: </Text> */}
+                                <Rating
+                                    imageSize={30}
+                                    type='custom'
+                                    startingValue={4}
+                                    minValue={1}
+                                    ratingColor={secondary}
+                                    tintColor='white'
+                                    ratingBackgroundColor='transparent'
+                                    onFinishRating={(value) => { console.log(value); setNumOfStars(value) }}
+                                    style={{ borderRadius: 5, }}
+                                />
+                            </View>
+                            <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-around', }}>
+                                <Checkbox
+                                    value={isSelectedPositive}
+                                    onValueChange={() => setSelectionPositive(!isSelectedPositive)}
+                                    color={secondary}
+                                />
+                                <Text style={{}}>Positive</Text>
+
+                                <Checkbox
+                                    value={isSelectedNeutral}
+                                    onValueChange={() => setSelectionNeutral(!isSelectedNeutral)}
+                                    color={secondary}
+                                />
+                                <Text>Neutral</Text>
+
+                                <Checkbox
+                                    value={isSelectedNegative}
+                                    onValueChange={() => setSelectionNegative(!isSelectedNegative)}
+                                    color={secondary}
+                                />
+                                <Text>Negative</Text>
+
+                            </View>
+                            <View style={{ flex: 1, }}>
+                                <DropDownPicker
+                                    // multiple={true} 
+                                    open={dropDownOpen}
+                                    value={serviceValue}
+                                    items={services}
+                                    setOpen={setDropDownOpen}
+                                    setValue={setServiceValue}
+                                    setItems={setServices}
+                                    translation={{
+                                        PLACEHOLDER: "Select Service"
+                                    }}
+                                    dropDownDirection="bottom"
+                                    stickyHeader={true}
+                                    textStyle={{
+                                        fontSize: 15,
+                                    }}
+                                    labelStyle={{
+                                        // color: secondary
+                                    }}
+                                    style={{
+                                        // backgroundColor: secondary
+                                        borderColor: secondary,
+                                        borderWidth: 2,
+                                        opacity: 1,
+                                        paddingHorizontal: 18,
+                                    }}
+                                    onChangeValue={(value) => {
+                                        console.log(value);
+                                    }}
+                                />
+                            </View>
+                            <View style={{ flex: 1, borderColor: secondary, borderRadius: 155, borderWidth: 2, justifyContent: 'center', paddingHorizontal: 18, backgroundColor: trendy ? secondary : '#fff', marginVertical: 18 }}>
+                                <TouchableOpacity onPress={() => { setTrendy(!trendy); }}>
+                                    <Text style={{ fontSize: 15, fontWeight: '400' }}> Tendy Reviews </Text>
+                                </TouchableOpacity>
+                            </View>
+
+                            <View style={{ flex: 1, flexDirection: 'row' }}>
+                                <View style={{ flex: 1, borderColor: secondary, borderRadius: 155, borderWidth: 2, justifyContent: 'center', paddingHorizontal: 18, backgroundColor: recentOrOldest == 'recent' ? secondary : '#fff' }}>
+                                    <TouchableOpacity onPress={() => { setRecentOrOldest('recent'); }}>
+                                        <Text style={{ fontSize: 15, fontWeight: '400' }}>Recent</Text>
+                                    </TouchableOpacity>
+                                </View>
+                                <View style={{ flex: 1, borderColor: secondary, borderRadius: 155, borderWidth: 2, justifyContent: 'center', paddingHorizontal: 18, backgroundColor: recentOrOldest == 'oldest' ? secondary : '#fff' }}>
+                                    <TouchableOpacity onPress={() => { setRecentOrOldest('oldest'); }}>
+                                        <Text style={{ fontSize: 15, fontWeight: '400' }}>Oldest </Text>
+                                    </TouchableOpacity>
+                                </View>
+                            </View>
+                            {/* <View style={{flex: 0.7, borderColor: secondary, borderRadius: 155, borderWidth:2, justifyContent: 'center', paddingHorizontal:18,}}>
+                                <TouchableOpacity  onPress={() => { setFilterVisible(false)} }>
+                                        <Text style={{fontSize: 15, fontWeight: '400' }}> Tendy Reviews </Text>
+                                </TouchableOpacity>
+                            </View> */}
+
+                        </View>
+                    </View>
+                </View>
+            </Modal>
+
+            <View style={{flexDirection: 'row', height: 50, justifyContent: 'center', marginHorizontal: 15, marginTop: 15, padding: 10, borderRadius:4, borderColor: '#aaa', borderWidth: 1, marginBottom:8  }}>
+                <Text style={{ flex: 10, fontSize: 20 }}>Reviews</Text>
+                <FontAwesome name='sliders' size={27} style={{ flex: 1, alignSelf: 'center', }} onPress={() => { setFilterVisible(true) }} />
+            </View>
+
+            <ReviewsScreen reviewsProp={reviewsTry}  {...props}/>
+        </View>
+    );
+
     return (
         <BottomSheetModalProvider>
 
@@ -179,7 +330,7 @@ export default function BusinessScreen({ route, navigation }) {
 
                 <View style={styles.followReviewWrapper}>
 
-                    <TouchableOpacity style={styles.button} onPress={() => {navigation.navigate('WriteReviewScreen', { businessName: businessName})}}>
+                    <TouchableOpacity style={styles.button} onPress={() => { navigation.navigate('WriteReviewScreen', { businessName: businessName }) }}>
                         <Text style={styles.buttonText}>Review</Text>
                     </TouchableOpacity>
 
@@ -207,7 +358,7 @@ export default function BusinessScreen({ route, navigation }) {
                         <Text style={{ fontSize: 13 }} >Location</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.icon} onPress={() => {navigation.navigate('GalleryScreen', {images: images}) }}>
+                    <TouchableOpacity style={styles.icon} onPress={() => { navigation.navigate('GalleryScreen', { images: images }) }}>
                         <Ionicons name='images-outline' size={20} />
                         <Text style={{ fontSize: 13 }}>Photos</Text>
                     </TouchableOpacity>
@@ -218,7 +369,7 @@ export default function BusinessScreen({ route, navigation }) {
                     </TouchableOpacity>
                 </View>
 
-                <View style={{ marginTop: 25, height: height - 70, marginHorizontal: 3 }}>
+                <View style={{ marginTop: 25, height: height , marginHorizontal: 3 }}>
                     <Tab.Navigator
                         tabBarOptions={{
                             indicatorStyle: {
@@ -232,15 +383,15 @@ export default function BusinessScreen({ route, navigation }) {
                         }}
                     >
                         <Tab.Screen name='Info' component={InfoScreen} />
-                        <Tab.Screen name='Reviews' component={ReviewsScreen} initialParams={{ reviews: reviews }} />
+                        <Tab.Screen name='Reviews' component={BusinessReviewsScreen} />
                     </Tab.Navigator>
                 </View>
-
+{/* 
                 <View>
                     <Text>
                         Hello
                     </Text>
-                </View>
+                </View> */}
 
             </ScrollView>
         </BottomSheetModalProvider>
@@ -251,7 +402,7 @@ export default function BusinessScreen({ route, navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginBottom: 60
+        // marginBottom: 60
     },
     slide: {
         flex: 1,
@@ -272,7 +423,7 @@ const styles = StyleSheet.create({
         width: '100%',
         alignSelf: 'center',
         // borderRadius: 8,
-        
+
     },
     businessInfoWrapper: {
         position: 'absolute',
@@ -366,5 +517,29 @@ const styles = StyleSheet.create({
         // borderWidth: 1,
         borderColor: secondary,
         // backgroundColor: tertiary
+    },
+    centeredView: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 22,
+        
+    },
+    modalView: {
+        width: '90%',
+        height: '50%',
+        padding: 20,
+        backgroundColor: "#eee",
+        borderRadius: 10,
+        shadowColor: "#111",
+        shadowOffset: {
+            width: 0,
+            height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5,
+        borderWidth: 2,
+        borderColor: secondary
     },
 });
