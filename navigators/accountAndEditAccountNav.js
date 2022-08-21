@@ -19,7 +19,7 @@ import { Colors } from '../components/styles'
 const Stack = createNativeStackNavigator();
 
 const { primary_1, darkPrimary, secondary, tertiary } = Colors
-const AccountAndEditAccountNav = () => {
+const AccountAndEditAccountNav = ({navigation}) => {
     return (
 
             <Stack.Navigator
@@ -39,7 +39,7 @@ const AccountAndEditAccountNav = () => {
                 <Stack.Screen name='ReviewsScreen' component={ReviewsScreen} />        
                 <Stack.Screen name='BusinessesScreen' component={BusinessesScreen} />  
                 <Stack.Screen name='BusinessScreen' component={BusinessScreen} />     
-                </Stack.Navigator>
+            </Stack.Navigator>
 
     );
 }

@@ -27,7 +27,7 @@ import { reviewsTry, images, businessesTry } from '../data';
 
 const { primary_1, darkPrimary, secondary, tertiary, brandTitle, brandColor } = Colors;
 
-export default function AccountScreen({ navigation }) {
+export default function AccountScreen({ navigation, ...props }) {
     const [userName, setUserName] = useState('Ashraf habromman');
     const [userEmail, setUserEmail] = useState('ashraf@asali.com');
     const [headline, setHeadline] = useState('Food lover');
@@ -173,7 +173,7 @@ export default function AccountScreen({ navigation }) {
                 <Text style={{ flex: 10, fontSize: 20 }}>Reviews</Text>
                 <FontAwesome name='sliders' size={27} style={{ flex: 1, alignSelf: 'center', }} onPress={() => { setFilterVisible(true) }} />
             </View>
-            <ReviewsScreen reviewsProp={reviewsTry} />
+            <ReviewsScreen reviewsProp={reviewsTry} navigation={navigation}/>
 
         </ScrollView>
     );
