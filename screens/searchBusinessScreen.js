@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, TextInput, Modal } from "react-native";
 
 import {
@@ -12,12 +12,29 @@ import {
     from 'react-native-vector-icons';
 import { Colors, Line, MsgBox } from '../components/styles';
 import { Rating, } from 'react-native-ratings';
+import * as Location from 'expo-location';
 const { primary_1, darkPrimary, secondary, tertiary } = Colors;
 
 export default function SearchBusinessScreen(props) {
 
-    const navigation = props.navigation
+    const [currentLocation, setCurrentLocation] = useState({ longitude: null, latitude: null });
+ 
+    useEffect(() => {
+      (async () => {
+        let { status } = await Location.requestForegroundPermissionsAsync();
+        if (status !== 'granted')
+          return;
+   
+        let location = await Location.getCurrentPositionAsync({});
+        setCurrentLocation({longitude: location.coords.longitude, latitude: location.coords.latitude });
+        console.log(currentLocation)
+        // webRef.injectJavaScript(`map.setCenter([${parseFloat(lng)}, ${parseFloat(lat)}])`);
+      })();
+      
+    }, []);
+  
 
+    const navigation = props.navigation
     const [catergories, setCatergories] = useState([
         { label: 'All Categories', value: 'all', icon: 'done-all' },
         { label: 'Resturants', value: 'resturants', icon: 'restaurant' },
@@ -49,7 +66,7 @@ export default function SearchBusinessScreen(props) {
                     // onPressIn={() => { console.log(chosenCategory) }}
                     >
                     </TextInput>
-                    <FontAwesome name='sliders' size={27} style={{ flex: 1, alignSelf: 'center', }} onPress={() => { setFilterVisible(true) }} />
+                    <FontAwesome name='sliders' size={27} style={{ flex: 1, alignSelf: 'center', }} onPress={() => { setFilterVisible(true);}} />
                 </View>
             </View>
 

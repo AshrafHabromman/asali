@@ -94,7 +94,6 @@ export default function BusinessScreen({ route, navigation }) {
     const [isSelectedPositive, setSelectionPositive] = useState(false);
     const [isSelectedNegative, setSelectionNegative] = useState(false);
     const [isSelectedNeutral, setSelectionNeutral] = useState(false);
-
     
     const [services, setServices] = useState([
         { label: 'Vitrified Glass', value: 'Vitrified Glass' },
@@ -115,8 +114,8 @@ export default function BusinessScreen({ route, navigation }) {
     const bottomSheetRef = useRef(null);
     const snapPoints = useMemo(() => ['25%', '57%'], []);
 
-    const [open, setOpen] = useState(true);
-    const [following, setFollowing] = useState(false);
+    const [open, setOpen] = useState(true);     // is the business open now ? 
+    const [following, setFollowing] = useState(false);  // is user follow tjis business ? 
 
     const handleFollowing = () => {
         setFollowing(!following)
@@ -124,6 +123,10 @@ export default function BusinessScreen({ route, navigation }) {
 
     const pressCall = () => {
         const url = 'tel:0595429423'
+        Linking.openURL(url)
+    }
+    const goWebsite = () => {
+        const url = 'https://www.pizzatime.co.uk/?locale=en-GB'
         Linking.openURL(url)
     }
 
@@ -236,11 +239,7 @@ export default function BusinessScreen({ route, navigation }) {
                                     </TouchableOpacity>
                                 </View>
                             </View>
-                            {/* <View style={{flex: 0.7, borderColor: secondary, borderRadius: 155, borderWidth:2, justifyContent: 'center', paddingHorizontal:18,}}>
-                                <TouchableOpacity  onPress={() => { setFilterVisible(false)} }>
-                                        <Text style={{fontSize: 15, fontWeight: '400' }}> Tendy Reviews </Text>
-                                </TouchableOpacity>
-                            </View> */}
+
 
                         </View>
                     </View>
@@ -363,7 +362,7 @@ export default function BusinessScreen({ route, navigation }) {
                         <Text style={{ fontSize: 13 }}>Photos</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.icon}>
+                    <TouchableOpacity style={styles.icon} onPress={goWebsite} >
                         <Ionicons name='link-outline' size={20} />
                         <Text style={{ fontSize: 13 }}>Website</Text>
                     </TouchableOpacity>

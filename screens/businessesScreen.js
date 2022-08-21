@@ -2,48 +2,10 @@
 import React from 'react';
 import { useState } from 'react';
 import { StyleSheet, View, Button, TextInput, ScrollView, TouchableOpacity, Text, } from 'react-native';
-
-import {
-    StyledContainer,
-    InnerContainer,
-    PageLogo,
-    PageTitle,
-    SubTitle,
-    StyledFormArea,
-    StyledTextInput,
-    StyledInputLabel,
-    LeftIcon,
-    RightIcon,
-    StyledButton,
-    ButtonText,
-    Colors,
-    MsgBox,
-    Line,
-    ExtraText,
-    ExtraView,
-    TextLink,
-    TextLinkContent,
-
-} from './../components/styles';
-
-import {
-    Ionicons,
-    MaterialCommunityIcons,
-    Fontisto,
-    SimpleLineIcons,
-    FontAwesome,
-    Octicons,
-    EvilIcons
-}
-    from 'react-native-vector-icons';
-
 import BusinessCard from '../components/businessCard';
-
 import { SafeAreaView } from 'react-native-safe-area-context';
-
-const { primary_1, darkPrimary, secondary, tertiary, brandTitle, brandColor } = Colors;
-
 import { reviewsTry } from '../data';
+
 export default function BusinessesScreen({ route, navigation }) {
 
     const { headerTitle, businessesTry } = route.params;

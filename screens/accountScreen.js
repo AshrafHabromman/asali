@@ -11,17 +11,14 @@ import {
     Ionicons,
     MaterialCommunityIcons,
     Fontisto,
-    SimpleLineIcons,
     FontAwesome,
-    Octicons,
     EvilIcons
 }
     from 'react-native-vector-icons';
 
 
-import { Avatar, Title, Caption, TouchableRipple } from 'react-native-paper';
+import { Avatar, Title, Caption, } from 'react-native-paper';
 import { Rating, } from 'react-native-ratings';
-import DropDownPicker from 'react-native-dropdown-picker';
 import Checkbox from 'expo-checkbox';
 
 import ReviewsScreen from './reviewsScreen'
@@ -64,10 +61,6 @@ export default function AccountScreen({ navigation }) {
                 </View>
             </View>
             <View style={styles.userInfoSection}>
-                {/* <View style={styles.row}>
-                    <MaterialCommunityIcons name='map-marker-radius' size={20} color={tertiary}/>
-                    <Text style={{color:tertiary, marginLeft:20 }}>Nablus, Palestine</Text>
-                </View> */}
                 <View style={styles.row}>
                     <MaterialCommunityIcons name='email' size={20} color={tertiary} />
                     <Text style={{ color: tertiary, marginLeft: 20 }}>{userEmail}</Text>
@@ -84,19 +77,16 @@ export default function AccountScreen({ navigation }) {
 
             <View style={styles.infoBoxWrapper}>
 
-                <TouchableOpacity style={styles.infoBox} onPress={() => { navigation.navigate('BusinessesScreen', { headerTitle: name + '\'s Followings', businessesTry: businessesTry }) }}>
-                    {/* <SimpleLineIcons name='user-following' size={22} color={secondary}/>
-                    <Caption>Followers | 30</Caption> */}
+                <TouchableOpacity 
+                    style={styles.infoBox} 
+                    onPress={() => { navigation.navigate('BusinessesScreen', { headerTitle: name + '\'s Followings', businessesTry: businessesTry }) }}
+                >
 
                     <Ionicons name='heart-outline' color={secondary} size={20} />
                     <Caption > Followings | 20</Caption>
-
                 </TouchableOpacity>
 
-                {/* <TouchableOpacity style={styles.infoBox} onPress={() => {navigation.navigate('ReviewsScreen', {reviews:reviews})}}>
-                    <EvilIcons name='star' size={32} color={secondary}/>
-                    <Caption>Reviews | 5</Caption>
-                </TouchableOpacity> */}
+
 
                 <TouchableOpacity style={styles.infoBox} onPress={() => { navigation.navigate('GalleryScreen', { images: images }) }}>
                     <MaterialCommunityIcons name='image-multiple-outline' size={20} color={secondary} />
@@ -104,32 +94,6 @@ export default function AccountScreen({ navigation }) {
                 </TouchableOpacity>
             </View>
 
-            {/* <View style={styles.menuWrapper}>
-                <TouchableRipple onPress={()=>{navigation.navigate('BusinessesScreen', {headerTitle: name+'\'s Followings', businessesTry: businessesTry})}}>
-                    <View style={styles.menuItem}>
-                        <Ionicons name='heart-outline' color={secondary} size={20}/>
-                        <Text style={styles.menuItemText}>Your Followings</Text>
-                    </View>
-                </TouchableRipple>
-                <TouchableRipple onPress={()=>{console.log('hi')}}>
-                    <View style={styles.menuItem}>
-                        <MaterialCommunityIcons name='share-outline' color={secondary} size={24}/>
-                        <Text style={styles.menuItemText}>Share with friends</Text>
-                    </View>
-                </TouchableRipple>
-                <TouchableRipple onPress={()=>{console.log('hi')}}>
-                    <View style={styles.menuItem}>
-                        <Ionicons name='heart-outline' color={secondary} size={24}/>
-                        <Text style={styles.menuItemText}>Your favoraties</Text>
-                    </View>
-                </TouchableRipple>
-                <TouchableRipple onPress={()=>navigation.navigate('EditAccountScreen')}>
-                    <View style={styles.menuItem}>
-                        <MaterialCommunityIcons name='account-edit-outline' color={secondary} size={24}/>
-                        <Text style={styles.menuItemText}>Edit profile</Text>
-                    </View>
-                </TouchableRipple>
-            </View> */}
 
             <Modal
                 presentationStyle='overFullScreen'

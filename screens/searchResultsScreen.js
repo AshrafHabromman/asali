@@ -27,6 +27,8 @@ import {
   Colors,
 } from '../components/styles';
 
+import * as Location from 'expo-location';
+
 const { primary_1, darkPrimary, secondary, tertiary, brandTitle, brandColor } = Colors;
 
 
