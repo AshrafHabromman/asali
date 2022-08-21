@@ -36,11 +36,11 @@ const { width, height } = Dimensions.get("window");
 export default function InfoScreen() {
 
     let webRef = undefined;
-
-    let businessPosition = {longitude: '-121.913', latitude:'37.361'};
+    { /*TODO*/}
+    const [businessPosition, setBusinessPosition] = useState({longitude: '-121.913', latitude:'37.361'});
     let [mapCenter, setMapCenter] = useState(businessPosition.longitude+','+businessPosition.longitude);
-
     
+
     const handleMapEvent = (event) => {
       console.log(event.nativeEvent)
       setMapCenter(event.nativeEvent.data)
@@ -48,11 +48,12 @@ export default function InfoScreen() {
 
     const handleOnLoadMap = () => {
         webRef.injectJavaScript(`new tt.Marker().setLngLat([${parseFloat(businessPosition.longitude)}, ${parseFloat(businessPosition.latitude)}]).addTo(map)`);
+        
     }
     
     const lolo = 9
-
-    const services = [
+    { /*TODO*/}
+    const services = [  
         'Vitrified Glass',
         'Melamine',
         'Polycarbonate',
@@ -65,8 +66,8 @@ export default function InfoScreen() {
     return (
         <View style={styles.info}>
             <View style={styles.bio}>
-                <Text>
-                    Bla Bla la Bla Bla la
+                <Text> { /*TODO*/}
+                    Bla Bla la Bla Bla la 
                     Bla Bla la Bla Bla la
                     Bla Bla la Bla Bla la
                     Bla Bla la Bla Bla la
@@ -77,7 +78,7 @@ export default function InfoScreen() {
             <View style={styles.reviewBrief}>
                 <View style={styles.reviewOverall}>
                     <Text style={{ fontWeight: '500' }}>Overall Review</Text>
-                    <StarRating rating={4} reviews={39} />
+                    <StarRating rating={4} reviews={39} />                     { /*TODO*/}
                 </View>
                 <View style={{ width: '75%', height: '100%', }}>
                     <VictoryChart
@@ -101,11 +102,11 @@ export default function InfoScreen() {
                             }}
                             cornerRadius={{ top: 5, }}
                             data={[
-                                { x: '1', y: 2, },
-                                { x: '2', y: 3, },
-                                { x: '3', y: 4, },
-                                { x: '4', y: 5, },
-                                { x: '5', y: lolo, },
+                                { x: '1', y: 2, }, //TODO
+                                { x: '2', y: 3, },//TODO
+                                { x: '3', y: 4, },//TODO
+                                { x: '4', y: 5, },//TODO
+                                { x: '5', y: lolo, },//TODO
                             ]}
                             labels={({ datum }) => datum.y}
                         />

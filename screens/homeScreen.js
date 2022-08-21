@@ -55,7 +55,6 @@ const HomeScreen = ({ navigation }) => {
     const [isSelectedNegative, setSelectionNegative] = useState(false);
     const [isSelectedNeutral, setSelectionNeutral] = useState(false);
 
-    
     const [catergories, setCatergories] = useState([
         {label:'Resturants', value: 'resturants'},
         {label:'Drinks', value: 'drinks'},
@@ -68,7 +67,7 @@ const HomeScreen = ({ navigation }) => {
     const [categoryValue, setCategoryValue] = useState(null);
     const [dropDownOpen, setDropDownOpen] = useState(false);
     const [trendy, setTrendy] = useState(false)
-    const [recentOrOldest, setRecentOrOldest] = useState('recent')
+    const [recentOrOldest, setRecentOrOldest] = useState(true)
 
     //TODO
     // reviews 
@@ -141,9 +140,10 @@ const HomeScreen = ({ navigation }) => {
                     onPressIn={() => { console.log('hii') }}
                 ></TextInput>
             </TouchableOpacity>
+
             <View style={{ marginVertical: 20 }}>
                 <View style={styles.categoryContainer}>
-                    <TouchableOpacity style={styles.categoryBtn} onPress={() => { navigation.navigate('BusinessesScreen', { headerTitle: 'Resturants', businessesTry: businessesTry }) }}>
+                    <TouchableOpacity style={styles.categoryBtn} onPress={() => { navigation.navigate('BusinessesScreen', { headerTitle: 'Resturants', businessesTry: businessesTry } ) }}>
                         <View style={styles.categoryIcon}>
                             <Ionicons name='ios-restaurant' size={35} color={secondary} />
                         </View>
@@ -300,13 +300,13 @@ const HomeScreen = ({ navigation }) => {
                             </View>
 
                             <View style={{flex: 1, flexDirection: 'row' }}>
-                                <View style={{flex:1 , borderColor: secondary, borderRadius: 155, borderWidth:2, justifyContent: 'center', paddingHorizontal:18, backgroundColor: recentOrOldest == 'recent'? secondary : '#fff' }}>
-                                    <TouchableOpacity  onPress={() => {setRecentOrOldest('recent'); } }>
+                                <View style={{flex:1 , borderColor: secondary, borderRadius: 155, borderWidth:2, justifyContent: 'center', paddingHorizontal:18, backgroundColor: recentOrOldest ? secondary : '#fff' }}>
+                                    <TouchableOpacity  onPress={() => {setRecentOrOldest(true); } }>
                                             <Text style={{fontSize: 15, fontWeight: '400' }}>Recent</Text>
                                     </TouchableOpacity>
                                 </View>
-                                <View style={{flex: 1, borderColor: secondary, borderRadius: 155, borderWidth:2, justifyContent: 'center', paddingHorizontal:18, backgroundColor: recentOrOldest == 'oldest'? secondary : '#fff'}}>
-                                    <TouchableOpacity  onPress={() => {setRecentOrOldest('oldest'); } }>
+                                <View style={{flex: 1, borderColor: secondary, borderRadius: 155, borderWidth:2, justifyContent: 'center', paddingHorizontal:18, backgroundColor: !recentOrOldest ? secondary : '#fff'}}>
+                                    <TouchableOpacity  onPress={() => {setRecentOrOldest(false); } }>
                                             <Text style={{fontSize: 15, fontWeight: '400' }}>Oldest </Text>
                                     </TouchableOpacity>
                                 </View>

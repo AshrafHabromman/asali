@@ -36,8 +36,8 @@ const ReviewCard = ({ item, navigation }) => {
     const coolCount = item.coolCount;
     const funnyCount = item.funnyCount;
     const usefulCount = item.usefulCount;
+    //
 
-    
     // const navigation = useNavigation();
     const PostImage = ({ item, images }) => {
         return(
@@ -52,9 +52,9 @@ const ReviewCard = ({ item, navigation }) => {
     }
 
 
-    const ReactionButton = ({color, title, numberReactions}) => {
+    const ReactionButton = ({color, title, numberReactions, clickedFlag}) => {
 
-        const [clicked, setClicked] = useState(false);
+        const [clicked, setClicked] = useState(clickedFlag);
         return(
             <TouchableOpacity 
                 style={[styles.reactionButton, { backgroundColor: (clicked) ? color: 'transparent'}]} 
@@ -64,9 +64,7 @@ const ReviewCard = ({ item, navigation }) => {
                 <Text style={{color: (clicked) ? 'white' : color, marginLeft:3}}>{ title } | {numberReactions}</Text>
             </TouchableOpacity>
         )
-        
     }
-
 
     return (
         <View style={styles.card}>
@@ -106,11 +104,10 @@ const ReviewCard = ({ item, navigation }) => {
             <Line />
 
             <View style={styles.reactionWrapper}>
-                <ReactionButton title='Useful' numberReactions={usefulCount} color={secondary} />
-                <ReactionButton title='Cool' numberReactions={coolCount} color={secondary} />
-                <ReactionButton title='Funny' numberReactions={funnyCount} color={secondary} />
+                <ReactionButton title='Useful' numberReactions={usefulCount} color={secondary} clickedFlag={false}/>
+                <ReactionButton title='Cool' numberReactions={coolCount} color={secondary} clickedFlag={false}/>
+                <ReactionButton title='Funny' numberReactions={funnyCount} color={secondary} clickedFlag={false}/>
             </View>
-
 
         </View>
     )

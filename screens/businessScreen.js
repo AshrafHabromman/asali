@@ -86,7 +86,6 @@ const days = [
 
 ]
 
-
 export default function BusinessScreen({ route, navigation }) {
 
     const [filterVisible, setFilterVisible] = useState(false);
@@ -108,7 +107,7 @@ export default function BusinessScreen({ route, navigation }) {
     const [serviceValue, setServiceValue] = useState(null);
     const [dropDownOpen, setDropDownOpen] = useState(false);
     const [trendy, setTrendy] = useState(false)
-    const [recentOrOldest, setRecentOrOldest] = useState('recent');
+    const [recentOrOldest, setRecentOrOldest] = useState(true);
 
 
     const bottomSheetRef = useRef(null);
@@ -228,13 +227,13 @@ export default function BusinessScreen({ route, navigation }) {
                             </View>
 
                             <View style={{ flex: 1, flexDirection: 'row' }}>
-                                <View style={{ flex: 1, borderColor: secondary, borderRadius: 155, borderWidth: 2, justifyContent: 'center', paddingHorizontal: 18, backgroundColor: recentOrOldest == 'recent' ? secondary : '#fff' }}>
-                                    <TouchableOpacity onPress={() => { setRecentOrOldest('recent'); }}>
+                                <View style={{ flex: 1, borderColor: secondary, borderRadius: 155, borderWidth: 2, justifyContent: 'center', paddingHorizontal: 18, backgroundColor: recentOrOldest ? secondary : '#fff' }}>
+                                    <TouchableOpacity onPress={() => { setRecentOrOldest(true); }}>
                                         <Text style={{ fontSize: 15, fontWeight: '400' }}>Recent</Text>
                                     </TouchableOpacity>
                                 </View>
-                                <View style={{ flex: 1, borderColor: secondary, borderRadius: 155, borderWidth: 2, justifyContent: 'center', paddingHorizontal: 18, backgroundColor: recentOrOldest == 'oldest' ? secondary : '#fff' }}>
-                                    <TouchableOpacity onPress={() => { setRecentOrOldest('oldest'); }}>
+                                <View style={{ flex: 1, borderColor: secondary, borderRadius: 155, borderWidth: 2, justifyContent: 'center', paddingHorizontal: 18, backgroundColor: !recentOrOldest ? secondary : '#fff' }}>
+                                    <TouchableOpacity onPress={() => { setRecentOrOldest(false); }}>
                                         <Text style={{ fontSize: 15, fontWeight: '400' }}>Oldest </Text>
                                     </TouchableOpacity>
                                 </View>
